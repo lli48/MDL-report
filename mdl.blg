@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d (TeX Live 2014)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: mdl.aux
+The style file: unsrt.bst
+Database file #1: mdl.bib
+Repeated entry---line 113 of file mdl.bib
+ : @inproceedings{salakhutdinov2007restricted
+ :                                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 149 of file mdl.bib
+ : @article{hardoon2004canonical
+ :                              ,
+I'm skipping whatever remains of this entry
+You've used 15 entries,
+            1791 wiz_defined-function locations,
+            539 strings with 6041 characters,
+and the built_in function-call counts, 4329 in all, are:
+= -- 417
+> -- 148
+< -- 6
++ -- 55
+- -- 40
+* -- 274
+:= -- 612
+add.period$ -- 47
+call.type$ -- 15
+change.case$ -- 15
+chr.to.int$ -- 0
+cite$ -- 15
+duplicate$ -- 201
+empty$ -- 438
+format.name$ -- 40
+if$ -- 1011
+int.to.chr$ -- 0
+int.to.str$ -- 15
+missing$ -- 13
+newline$ -- 78
+num.names$ -- 15
+pop$ -- 57
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 127
+stack$ -- 0
+substring$ -- 377
+swap$ -- 77
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 46
+width$ -- 17
+write$ -- 166
+(There were 2 error messages)

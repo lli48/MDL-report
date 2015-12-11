@@ -1,0 +1,87 @@
+\begin{thebibliography}{10}
+
+\bibitem{hinton2006reducing}
+Geoffrey~E Hinton and Ruslan~R Salakhutdinov.
+\newblock Reducing the dimensionality of data with neural networks.
+\newblock {\em Science}, 313(5786):504--507, 2006.
+
+\bibitem{ngiam2011multimodal}
+Jiquan Ngiam, Aditya Khosla, Mingyu Kim, Juhan Nam, Honglak Lee, and Andrew~Y
+  Ng.
+\newblock Multimodal deep learning.
+\newblock In {\em Proceedings of the 28th international conference on machine
+  learning (ICML-11)}, pages 689--696, 2011.
+
+\bibitem{hardoon2004canonical}
+David~R Hardoon, Sandor Szedmak, and John Shawe-Taylor.
+\newblock Canonical correlation analysis: An overview with application to
+  learning methods.
+\newblock {\em Neural computation}, 16(12):2639--2664, 2004.
+
+\bibitem{salakhutdinov2009deep}
+Ruslan Salakhutdinov and Geoffrey~E Hinton.
+\newblock Deep boltzmann machines.
+\newblock In {\em International Conference on Artificial Intelligence and
+  Statistics}, pages 448--455, 2009.
+
+\bibitem{salakhutdinov2010efficient}
+Ruslan Salakhutdinov and Hugo Larochelle.
+\newblock Efficient learning of deep boltzmann machines.
+\newblock In {\em International Conference on Artificial Intelligence and
+  Statistics}, pages 693--700, 2010.
+
+\bibitem{hinton2006fast}
+Geoffrey~E Hinton, Simon Osindero, and Yee-Whye Teh.
+\newblock A fast learning algorithm for deep belief nets.
+\newblock {\em Neural computation}, 18(7):1527--1554, 2006.
+
+\bibitem{andrew2013deep}
+Galen Andrew, Raman Arora, Jeff Bilmes, and Karen Livescu.
+\newblock Deep canonical correlation analysis.
+\newblock In {\em Proceedings of the 30th International Conference on Machine
+  Learning}, pages 1247--1255, 2013.
+
+\bibitem{hinton2010practical}
+Geoffrey Hinton.
+\newblock A practical guide to training restricted boltzmann machines.
+\newblock {\em Momentum}, 9(1):926, 2010.
+
+\bibitem{le2008representational}
+Nicolas Le~Roux and Yoshua Bengio.
+\newblock Representational power of restricted boltzmann machines and deep
+  belief networks.
+\newblock {\em Neural computation}, 20(6):1631--1649, 2008.
+
+\bibitem{salakhutdinov2007restricted}
+Ruslan Salakhutdinov, Andriy Mnih, and Geoffrey Hinton.
+\newblock Restricted boltzmann machines for collaborative filtering.
+\newblock In {\em Proceedings of the 24th international conference on Machine
+  learning}, pages 791--798. ACM, 2007.
+
+\bibitem{deeptutorial}
+University of~Montreal LISA~lab.
+\newblock Deep learning tutorial.
+\newblock \url{http://deeplearning.net/tutorial/deeplearning.pdf}.
+\newblock Accessed: 2015-11-18.
+
+\bibitem{saul1996mean}
+Lawrence~K Saul, Tommi Jaakkola, and Michael~I Jordan.
+\newblock Mean field theory for sigmoid belief networks.
+\newblock {\em Journal of artificial intelligence research}, 4(1):61--76, 1996.
+
+\bibitem{hinton1995wake}
+Geoffrey~E Hinton, Peter Dayan, Brendan~J Frey, and Radford~M Neal.
+\newblock The "wake-sleep" algorithm for unsupervised neural networks.
+\newblock {\em Science}, 268(5214):1158--1161, 1995.
+
+\bibitem{larochelle2008classification}
+Hugo Larochelle and Yoshua Bengio.
+\newblock Classification using discriminative restricted boltzmann machines.
+\newblock In {\em Proceedings of the 25th international conference on Machine
+  learning}, pages 536--543. ACM, 2008.
+
+\bibitem{krizhevsky2009learning}
+Alex Krizhevsky and Geoffrey Hinton.
+\newblock Learning multiple layers of features from tiny images, 2009.
+
+\end{thebibliography}

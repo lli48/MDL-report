@@ -1,0 +1,62 @@
+\contentsline {section}{\numberline {1}Multimodal Deep Learning Library}{4}
+\contentsline {subsection}{\numberline {1.1}Introduction}{4}
+\contentsline {subsection}{\numberline {1.2}Content Description}{4}
+\contentsline {section}{\numberline {2}Network Brief}{5}
+\contentsline {subsection}{\numberline {2.1}Neural Network}{5}
+\contentsline {subsection}{\numberline {2.2}Markov Random Field}{5}
+\contentsline {subsection}{\numberline {2.3}Belief Network}{6}
+\contentsline {subsection}{\numberline {2.4}Deep Learning Models}{6}
+\contentsline {section}{\numberline {3}Restricted Boltzmann Machine}{8}
+\contentsline {subsection}{\numberline {3.1}Logic of Restricted Boltzmann Machine}{8}
+\contentsline {subsection}{\numberline {3.2}Training of Restricted Boltzmann Machine}{10}
+\contentsline {subsection}{\numberline {3.3}Tricks in Restricted Boltzmann Machine Training}{11}
+\contentsline {subsection}{\numberline {3.4}Classifier of Restricted Boltzmann Machine}{13}
+\contentsline {subsection}{\numberline {3.5}Implementation of RBM}{15}
+\contentsline {subsection}{\numberline {3.6}Summary}{16}
+\contentsline {section}{\numberline {4}Deep Neural Network}{17}
+\contentsline {subsection}{\numberline {4.1}Construction of Deep Neural Network}{17}
+\contentsline {subsection}{\numberline {4.2}Fine Tuning of Deep Neural Network}{18}
+\contentsline {subsection}{\numberline {4.3}Implementation of Deep Neural Network}{19}
+\contentsline {subsection}{\numberline {4.4}Summary}{20}
+\contentsline {section}{\numberline {5}Deep Belief Network}{21}
+\contentsline {subsection}{\numberline {5.1}Logic of Deep Belief Network}{21}
+\contentsline {subsection}{\numberline {5.2}Training of Deep Belief Network}{22}
+\contentsline {subsection}{\numberline {5.3}Classification of Deep Belief Network}{23}
+\contentsline {subsection}{\numberline {5.4}Implementation of Deep Belief Network}{24}
+\contentsline {subsection}{\numberline {5.5}Summary}{25}
+\contentsline {section}{\numberline {6}Denoising Autoencoder}{26}
+\contentsline {subsection}{\numberline {6.1}Construction of Autoencoder}{26}
+\contentsline {subsection}{\numberline {6.2}Fine tuning of Autoencoder}{27}
+\contentsline {subsection}{\numberline {6.3}Denoising Autoencoder}{29}
+\contentsline {subsection}{\numberline {6.4}Implementation of Denoising Autoencoder}{30}
+\contentsline {subsection}{\numberline {6.5}Summary}{30}
+\contentsline {section}{\numberline {7}Deep Boltzmann Machine}{31}
+\contentsline {subsection}{\numberline {7.1}Logic of Deep Boltzmann Machine}{31}
+\contentsline {subsection}{\numberline {7.2}Pretraining of Deep Boltzmann Machine}{31}
+\contentsline {subsection}{\numberline {7.3}Mean Field Inference}{33}
+\contentsline {subsection}{\numberline {7.4}Implementation of Deep Boltzmann Machine}{33}
+\contentsline {section}{\numberline {8}Multimodal Learning Model}{35}
+\contentsline {subsection}{\numberline {8.1}Deep Canonical Correlation Analysis}{35}
+\contentsline {subsubsection}{\numberline {8.1.1}Canonical Correlation Analysis}{35}
+\contentsline {subsubsection}{\numberline {8.1.2}Kernel Canonical Correlation Analysis}{36}
+\contentsline {subsubsection}{\numberline {8.1.3}Deep Correlation Analysis}{36}
+\contentsline {subsection}{\numberline {8.2}Deep Boltzmann Machine Multimodal Learning}{37}
+\contentsline {subsection}{\numberline {8.3}Modal Prediction}{37}
+\contentsline {section}{\numberline {9}Library Structure}{38}
+\contentsline {subsection}{\numberline {9.1}Data Reading}{38}
+\contentsline {subsubsection}{\numberline {9.1.1}MNIST}{38}
+\contentsline {subsubsection}{\numberline {9.1.2}CIFAR}{38}
+\contentsline {subsubsection}{\numberline {9.1.3}XRMB}{38}
+\contentsline {subsubsection}{\numberline {9.1.4}AvLetters}{39}
+\contentsline {subsubsection}{\numberline {9.1.5}Data Processing}{39}
+\contentsline {subsection}{\numberline {9.2}Computation and Utilities}{40}
+\contentsline {subsection}{\numberline {9.3}Models and Running}{41}
+\contentsline {section}{\numberline {10}Performance}{42}
+\contentsline {subsection}{\numberline {10.1}Restricted Boltzmann Machine}{42}
+\contentsline {subsection}{\numberline {10.2}Deep Neural Network}{42}
+\contentsline {subsection}{\numberline {10.3}Denoising Autoencoder}{42}
+\contentsline {subsection}{\numberline {10.4}Deep Belief Network}{43}
+\contentsline {subsection}{\numberline {10.5}Deep Boltzmann Machine}{44}
+\contentsline {subsection}{\numberline {10.6}Deep Canonical Correlation Analysis}{44}
+\contentsline {section}{\numberline {11}Conclusion}{45}
+\contentsline {section}{References}{46}
