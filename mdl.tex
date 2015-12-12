@@ -809,23 +809,31 @@ In Deep Correlation Analysis (DCCA), A layer of KCCA is added on top of two sepa
 \includegraphics[height=2.8in]{DCCA.png}
 \caption{Deep Canonical Correlation Analysis} \label{fig:side:a}
 \end{figure}
-
-\subsection{Deep Boltzmann Machine Multimodal Learning}
-\begin{figure}[h]
-\centering
-\includegraphics[height=2.8in]{DBMmodals.png}
-\caption{MRF Multimodal Learning Model} \label{fig:side:a}
-\end{figure}
-A type of Markov Random Field multimodal learning model is constructed by combining two Deep Boltzmann Machines. Figure 8.2 shows such a model. This model is constructed by first build two DBMs, each is trained on data of one modal. Then Train an RBM on top of these two DBMs.
-\subsection{Modal Prediction}
+\subsection{Modal Prediction and Transformation}
 \begin{figure*}[!t]
 \centering
 \subfigure[Bimodal Deep Belief Network] {\includegraphics[height=1.2in]{modalPrediction1.png}}
-\subfigure[Modal Prediction Network] {\includegraphics[height=1.8in]{modalPrediction2.png}}
+\subfigure[Modal Reconstruction Network] {\includegraphics[height=1.8in]{modalPrediction2.png}}
 \caption{Modal Prediction}
 \label{fig5}
 \end{figure*}
-Multiple models could predict unknow data of a modal. Figure 8.3(b) shows one type of them. This is constructed by first training a bimodal deep belief network in Figure 8.3(a), then use the acquired model parameters to initialize parameters in the modal prediction model. In training the bimodal deep belief network, the layers of the left branch is trained by stacking pretrained RBMs, and then the layers of the right branch is trained. Then these two sets of layers are combined.
+\begin{figure}[h]
+\centering
+\includegraphics[height=2.2in]{DBMmodals.png}
+\caption{MRF Multimodal Learning Model} \label{fig:side:a}
+\end{figure}
+It is possible to make lower-dimension representation of two modals by building a Bimodal Deep Belief Network as in Figure 8.2(a), in which blue nodes represent data from one modal and green nodes represent data from the other modal. In this process the recognition weights which are used in bottom-up computation and the generative weights which are used in top-down computation should be learned. If the model is trained with tied weights, half of the memory space could be saved since transpose of weight matrix would transform recognition weights to generative weights. The weights of this model could be used to reconstruct data of two modals as in Figure 8.2(b).\\
+\\
+Another option is to build a Markov Random Field multimodal learning model by combining two Deep Boltzmann Machines. Figure 8.2 shows such a model. This model is constructed by first build two DBMs, each is trained on data of one modal. Then Train an RBM on top of these two DBMs.\\
+\\
+Prediction of one data from one modal could be done by first training a Bimodal Autoencoder in Figure 8.4(a) and then use the modal prediction network in Figure(b) to predict data from two modals. It would be necessary to add noise possibly in data corruption when training the Bimodal Autoencoder so that it has more power in reconstruction.
+ \begin{figure*}[!t]
+\centering
+\subfigure[Bimodal Autoencoder] {\includegraphics[height=1.8in]{aemodal.png}}
+\subfigure[Modal Prediction Network] {\includegraphics[height=1.8in]{prediction.png}}
+\caption{Modal Prediction}
+\label{fig5}
+\end{figure*}
 \clearpage
 \section{Library Structure}
 \subsection{Data Reading}
