@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  10 DEC 2015 04:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 DEC 2015 02:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1295,22 +1295,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 972--975
 
  []
 
-[44]
-Underfull \hbox (badness 10000) in paragraph at lines 977--980
-
- []
-
-[45
-
-] (./mdl.bbl
+[44] (./mdl.bbl
 Underfull \hbox (badness 1430) in paragraph at lines 73--76
 \OT1/cmr/m/n/12 The "wake-sleep" al-go-rithm for un-su-per-vised neu-ral net-wo
 rks.  \OT1/cmr/m/it/12 Sci-ence\OT1/cmr/m/n/12 ,
  []
 
-[46
+[45
 
-]) [47] (./mdl.aux)
+]) [46] (./mdl.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1338,10 +1331,10 @@ e/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
 2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
 14/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/201
 4/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on mdl.pdf (47 pages, 1151089 bytes).
+Output written on mdl.pdf (46 pages, 1151648 bytes).
 PDF statistics:
- 248 PDF objects out of 1000 (max. 8388607)
- 152 compressed objects within 2 object streams
+ 245 PDF objects out of 1000 (max. 8388607)
+ 150 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  76 words of extra memory for PDF output out of 10000 (max. 10000000)
 

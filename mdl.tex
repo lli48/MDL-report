@@ -933,11 +933,11 @@ Main(.cpp) & runRBM & runDNN & runDBN & runDAE &runDBM & runDCCA \\
 \subsection{Restricted Boltzmann Machine}
 The main function to run Restricted Boltzmann Machine is in runRBM.cpp. It uses RBM for classification of MNIST data set. On MNIST, use 60,000 samples for training and 10,000 samples for testing. Run 8 epochs in a model consists of 500 hidden units. The Error rate is 0.0812 (Accuracy 91.82$\%$).\\
 \\
-Training of classifier on top of RBM uses one-step backpropagation, increase the number of epochs in this step to 50. The error rate will be reduced to 0.0707.
+Training of classifier on top of RBM uses one-step backpropagation. Increase the number of epochs in this step to 50, the error rate will be reduced to 0.0707. This is a common result of running RBM on MNIST. 
 \subsection{Deep Neural Network}
 The main function to run Deep Neural Network is in runDNN.cpp. Usually it takes a large number of epochs in backpropagation in training. However this number is greatly reduced by pretraining.\\
 \\
-For testing, a DNN with hidden layers of size 500, 300, 200 respectively is constructed. On MNIST data set, pretraining alone would gives out the error rate of 0.093 (Accuracy 90.7$\%$). One epoch in backpropagation gives out error rate of 0.0858 (Accuracy 91.42$\%$). Ten epochs in backpropagation gives out error rate of 0.0288 (Accuracy 97.12$\%$). Learning rate is 0.01 in fine tuning.
+For testing, a DNN with hidden layers of size 500, 300, 200 respectively is constructed. On MNIST data set, pretraining alone would gives out the error rate of 0.093 (Accuracy 90.7$\%$). One epoch in backpropagation gives out error rate of 0.0858 (Accuracy 91.42$\%$). Ten epochs in backpropagation gives out error rate of 0.0288 (Accuracy 97.12$\%$). Learning rate is 0.01 in fine tuning. The result is similar to the best performance of DNN on MNIST.
 \subsection{Denoising Autoencoder}
 The main function to run Denoisinig Autoencoder is in runDAE.cpp. For testing, a Denoising Autoencoder with hidden layers of size 500, 300, 500 is constructed. Figure 10.1 shows the Denoising Autoencoder reconstruction of the corrupted testing set using model trained by training set, in which upper six lines are reconstructions and the lower six lines are uncorrupted input. As a comparison, Figure 10.2 shows the Autoencoder reconstruction of the uncorrupted testing set. Fine tuninig in the Denoising Autoencoder gives more improvement of performance than in the Autoencoder.\\
 \\
@@ -949,7 +949,7 @@ On MNIST, run 10 epochs in fine tuning, the Autoencoder gives out the following 
 Average error without fine tuning 4463.24.\\
 Average error after fine tuning 3182.69.\\
 \\
-So after sufficient fine tuning, the reconstruction of Denoising Autoencoder is similar to the reconstruction from the uncorrupted images.\\
+So after sufficient fine tuning, the reconstruction of Denoising Autoencoder is similar to the reconstruction from the uncorrupted images. The reconstruction visualization is comparable to published result.\\
 \begin{figure*}[!t]
 \centering
 \subfigure[Denoising Autoencoder] {\includegraphics[height=3.5in]{ae3.png}}
@@ -965,22 +965,16 @@ So after sufficient fine tuning, the reconstruction of Denoising Autoencoder is 
 \end{figure}
 Another test is made with AvLetters data set, which is in runDAE$\_$letter.cpp. Figure 10.2 shows denosing avletter audio data. It uses the audio data of a person pronouncing "A", "B", "C", "D", "E", "F", "G" to train the model and reconstructs the data of person pronouncing "H" and "I".
 \subsection{Deep Belief Network}
-The main function to run the Deep Belief Network is in runDBN.cpp. For testing, a Deep Belief Network with hidden layers of sizes 500, 300, 200 is constructed. The error rate on MNIST without fine tuning is 0.0993 (Accuracy 90.07$\%$). The Up-down fine tuning method provides trivial improvement on this data set.
+The main function to run the Deep Belief Network is in runDBN.cpp. For testing, a Deep Belief Network with hidden layers of sizes 500, 300, 200 is constructed. The error rate on MNIST without fine tuning is 0.0993 (Accuracy 90.07$\%$). The Up-down fine tuning method provides trivial improvement on this data set. [6] indicates the best performance of DBN on MNIST could achieve the error rate of 1.25$\%$. There are multiple parameters in the training process could affect the result. I was trying to keep tied weights in DBN and made a little change to Up-down method, which releases the constraint of tied weights by updating recognition and generative weights separately. 
 \subsection{Deep Boltzmann Machine}
-The main function to run the Deep Boltzmann Machine is in runDBM.cpp. For testing, a Deep Boltzmann Machine with hidden layers of sizes 500, 500 is constructed. The error rate on MNIST without fine tuning is 0.0937 (Accuracy 90.63$\%$).
+The main function to run the Deep Boltzmann Machine is in runDBM.cpp. For testing, a Deep Boltzmann Machine with hidden layers of sizes 500, 500 is constructed. The error rate on MNIST without fine tuning is 0.0937 (Accuracy 90.63$\%$). Mean Field inference improves the accuracy to 93.47$\%$. Again multiple parameters could affect the result. [5] indicates that the accuracy on MNIST could achieve test error of 0.95$\%$. Its source code uses Conjugate Gradient optimization, which is not implemented in this library. This possibly causes the difference.
 \subsection{Deep Canonical Correlation Analysis}
-The main function to run DCCA is in runDCCA.cpp. The testing data set is CIFAR-10. Each image is divided as the left and the right halves as data from two views. Then two networks trained on two views are built. Each view of data is of dimension 512. Each network gives the output of dimension 20. The DCCA could quickly find the solution with correlation of 0.9226.\\
+The main function to run DCCA is in runDCCA.cpp. The testing data set is CIFAR-10. Each image is divided as the left and the right halves as data from two views. Then two networks trained on two views are built. Each view of data is of dimension 512. Each network gives the output of dimension 20. The DCCA could quickly find the solution with correlation of 0.9226. Without network below CCA layer, the solution could not be computed in a reasonable time.\\
 \\
 A test on AvLetters was also done. Unfortunately the correlation given is close to 0. This suggests that there is very week linear dependence between data of two modals. So it should be another form of dependence existing.
+\subsection{Modal Prediction}
+Modal prediction implementation is in the modal$\_$prediction.cpp. It trains the modal using audio and video data of uttering letter from "A" to "G" and then uses the audio data of letter "H" and "I" to predict the video data of "H" and "I". The total absolute value of testing video data is 119776. And the total absolute value of difference between prediction matrix and true data matrix is 12530.3. So there is 0.1046$\%$ error in prediction.
 \clearpage
-\section{Conclusion}
-MDL provides multiple deep learning model implementations with data reading interfaces. It is easy to extend and build upon. OpenCV is limited in matrix computation but it provides interface for transferring data between Eigen3, which is strong in matrix computation.\\
-\\
-This is the document of first version of MDL. More content and testing would be made in the future.
-\clearpage
-
-
-
 %Bibliographic references
 \addcontentsline{toc}{section}{References}
 \nocite{*}
