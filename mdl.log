@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 DEC 2015 16:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  17 DEC 2015 20:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1273,51 +1273,44 @@ Overfull \hbox (12.62213pt too wide) in paragraph at lines 928--937
  []
 
 [41] [42]
-Underfull \hbox (badness 10000) in paragraph at lines 942--945
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 946--949
+Underfull \hbox (badness 10000) in paragraph at lines 944--947
 
  []
 
 <ae3.png, id=178, 168.63pt x 347.2975pt>
 File: ae3.png Graphic file (type png)
  <use ae3.png>
-Package pdftex.def Info: ae3.png used on input line 963.
+Package pdftex.def Info: ae3.png used on input line 955.
 (pdftex.def)             Requested size: 122.82097pt x 252.94499pt.
 
 <ae2.png, id=179, 168.63pt x 348.30125pt>
 File: ae2.png Graphic file (type png)
  <use ae2.png>
-Package pdftex.def Info: ae2.png used on input line 964.
+Package pdftex.def Info: ae2.png used on input line 956.
 (pdftex.def)             Requested size: 122.46332pt x 252.94499pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 950--968
+Underfull \hbox (badness 10000) in paragraph at lines 948--960
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 950--968
+Underfull \hbox (badness 10000) in paragraph at lines 948--960
 
  []
 
+<avletterRec.png, id=180, 323.2075pt x 123.46124pt>
+File: avletterRec.png Graphic file (type png)
+ <use avletterRec.png>
+Package pdftex.def Info: avletterRec.png used on input line 963.
+(pdftex.def)             Requested size: 245.96574pt x 93.95122pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 950--968
 
- []
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 [43
 
-] <avletterRec.png, id=184, 323.2075pt x 123.46124pt>
-File: avletterRec.png Graphic file (type png)
- <use avletterRec.png>
-Package pdftex.def Info: avletterRec.png used on input line 971.
-(pdftex.def)             Requested size: 245.96574pt x 93.95122pt.
-
-[44 <./ae3.png> <./ae2.png> <./avletterRec.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 980--983
+] [44 <./ae3.png> <./ae2.png> <./avletterRec.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 972--975
 
  []
 
@@ -1357,7 +1350,7 @@ e/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
 2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
 14/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/201
 4/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on mdl.pdf (47 pages, 1248762 bytes).
+Output written on mdl.pdf (47 pages, 1248787 bytes).
 PDF statistics:
  252 PDF objects out of 1000 (max. 8388607)
  152 compressed objects within 2 object streams

@@ -54,7 +54,7 @@
 \contentsline {subsection}{\numberline {10.1}Restricted Boltzmann Machine}{43}
 \contentsline {subsection}{\numberline {10.2}Deep Neural Network}{43}
 \contentsline {subsection}{\numberline {10.3}Denoising Autoencoder}{43}
-\contentsline {subsection}{\numberline {10.4}Deep Belief Network}{45}
+\contentsline {subsection}{\numberline {10.4}Deep Belief Network}{44}
 \contentsline {subsection}{\numberline {10.5}Deep Boltzmann Machine}{45}
 \contentsline {subsection}{\numberline {10.6}Deep Canonical Correlation Analysis}{45}
 \contentsline {subsection}{\numberline {10.7}Modal Prediction}{45}
