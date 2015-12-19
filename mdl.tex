@@ -130,13 +130,13 @@ Given the conditional independence property of the Markov Random Field, in RBM p
 P(h|v)=\prod_j P(h_j|v) \label{eq:2}\\
 P(v|h)=\prod_i P(v_i|h).
 \end{gather}
-Plug equation \ref{eq:1} in equation \ref{eq:3}: \begin{equation} \label{eq:5}
+Plug equation \eqref{eq:1} in equation \eqref{eq:3}: \begin{equation} \label{eq:5}
 P(h|v)=\frac{P(h,v)}{\sum_{h'} P(h',v)}=\frac{exp(\sum_i b^v_i v_i + \sum_j b^h_j h_j +\sum_i \sum_j v_i w_{i,j} h_j)}{\sum_{h'} exp(\sum_i b^v_i v_i + \sum_j b^{h'}_j h'_j +\sum_i \sum_j v_i w_{i,j} h'_j)}.
 \end{equation}
 And through derivation one could get\begin{equation}\label{eq:4}
 \frac{exp(\sum_i b^v_i v_i + \sum_j b^h_j h_j +\sum_i \sum_j v_i w_{i,j} h_j)}{\sum_{h'} exp(\sum_i b^v_i v_i + \sum_j b^{h'}_j h'_j +\sum_i \sum_j v_i w_{i,j} h'_j)}=\prod_{j}\frac{exp(b^h_j + \sum_{i=1}^m W_{i,j} v_i )}{1+exp(b^h_j + \sum_{i=1}^m w_{i,j} v_i )}.
 \end{equation}
-Combine equation \ref{eq:2}, \ref{eq:5}, and \ref{eq:4} one could get
+Combine equation \eqref{eq:2}, \eqref{eq:5}, and \eqref{eq:4} one could get
 \begin{equation}
 P(h_j=1|v) = \sigma \left(b^h_j + \sum_{i=1}^{N_v} W_{i,j} v_i \right)\,
 \end{equation}
@@ -167,23 +167,26 @@ a^v = \sigma(h * W^{T} + b^v).
 \end{equation}
 In training, the state of the visible layer is initialized as training data.
 \subsection{Training of Restricted Boltzmann Machine}
-Training of Restricted Boltzmann Machine is the process of updating the weight and the biases of hidden and visible layers by gradient descent. Instead of Stochastic Gradient Descent, which performs update on each data sample, batch learning is used in RBM so that each update is based on a batch of training data. Using the same training data as input, several epochs are run for updating. \\
+In training of Restricted Boltzmann Machine, the weights and the biases of the hidden and the visible layers are updated by gradient descent. Instead of stochastic gradient descent, in which each update is based on each data sample, batch learning is used in RBM training. In batch learning, each update is based on a batch of training data. There are several epochs in training. Each epoch goes through the training data once.\\
 \\
-For instance if the input data has 10,000 samples and the number of batches is 200, then there will be 200 updates in each epoch.  For each update, gradients will be based on 50 samples. If the number of epochs is 10, there should be a total of 2000 updates in the training process if the gradients computed are not too trivial such that the updates stop before 2000 times.\\
+For instance if the input data has 10,000 samples and the number of batches is 200, then there will be 200 updates in each epoch.  For each update, gradients will be based on 50 samples. If the number of epochs is 10, commonly there should be a total of 2000 updates in the training process. If the gradients computed are trivial, this process may stop earlier.\\
 \\
-The gradients of weights are given by Contrastive Divergence as: \begin{equation}
+The gradients of weights are given by Contrastive Divergence as: \begin{equation}\label{eq:7}
 \nabla W_{ij} = \langle v_i * h_j\rangle_{recon} - \langle v_i * h_j\rangle_{data}
 \end{equation}
 where the angle brackets are expectations under the distribution specified by the
-subscript. The expectations here are approximated by sample mean. So it would be 
+subscript. The expectations here are approximated by data sample mean. So it would be 
 \begin{equation}
 \nabla W_{ij} = \sum_{k = 1} ^ {m}((v_i * h_j)_{recon_k} - (v_i * h_j)_{data_k}) / m
 \end{equation}
-where $m$ is the size of a batch.\\
+where $m$ is the size of each data batch.\\
 \\
-States of the visible layer and hidden layers, which are current values stores in all visible units and hidden units, form a sample in Gibbs sampling, based on which $(v_i * h_j)_{recon_n}$ is computed. Gibbs sampling is a Markov chain Monte Carlo method to obtain observations from a given joint distribution. In RBM, Gibbs sampling works in the following manner:\\
+States of the visible layer and hidden layer form a sample in Gibbs sampling, in which  the first sample gives states with the subscript "data" in equation \eqref{eq:7}  and the second sample gives states with the subscript "recon" in equation \eqref{eq:7}. Contrastive Divergence states that one step of Gibbs sampling, which computes the first and the second sample, approximates the descent with high accuracy. In RBM, Gibbs sampling works in the following manner:\\
 \\
-In Gibbs sampling, $k$ samples of $X = (x_1, \dots, x_n)$ are made from   a joint distribution $\left.p(x_1, \dots, x_n)\right.$ by sampling each component variable from a conditional probability. Specifically, in the (\emph{i} + 1)th sample, $x_j^{(i+1)}$ is sampled from $p(x_j|x_1^{(i+1)},\dots,x_{j-1}^{(i+1)},x_{j+1}^{(i)},\dots,x_n^{(i)})$. Sampling each component variable $x_i$ once forms a sample.  To acquire $k$ samples in Gibbs sampling this process needs to be done $k$ times, in which the latest sampled component variables are used to compute conditional probability.\\
+In Gibbs sampling, each sample $X = (x_1, \dots, x_n)$ is constructed from a joint distribution $\left.p(x_1, \dots, x_n)\right.$ by sampling each component variable from its posterior. Specifically, in the (\emph{i} + 1)th sample $X^{(i+1)} = (x_1^{(i+1)}, \dots, x_n^{(i+1)})$, $x_j^{(i+1)}$ is sampled from \begin{equation}
+p(X_j|x_1^{(i+1)},\dots,x_{j-1}^{(i+1)},x_{j+1}^{(i)},\dots,x_n^{(i)}),
+\end{equation}
+in which the latest sampled component variables are used to compute posterior. Sampling each component variable $x_j$ once forms a sample.\\
 \\
 Each unit is a stochastic binary unit. So the state is either 0 or 1. To sample $h_j$ from \begin{equation}
 P(h_j=1|v) = \sigma \left(b_j + \sum_{i=1}^m W_{i,j} v_i \right),
