@@ -188,16 +188,16 @@ p(X_j|x_1^{(i+1)},\dots,x_{j-1}^{(i+1)},x_{j+1}^{(i)},\dots,x_n^{(i)}),
 \end{equation}
 in which the latest sampled component variables are used to compute posterior. Sampling each component variable $x_j$ once forms a sample.\\
 \\
-Each unit is a stochastic binary unit. So the state is either 0 or 1. To sample $h_j$ from \begin{equation}
+Each unit of RBM is a stochastic binary unit and its state is either 0 or 1. To sample $h_j$ from \begin{equation}
 P(h_j=1|v) = \sigma \left(b_j + \sum_{i=1}^m W_{i,j} v_i \right),
 \end{equation}
-simply compute $a_j = \sigma \left(b_j + \sum_{i=1}^m W_{i,j} v_i \right)$. If $a_j$ is larger than a random sample from uniform distribution, its state is 1, otherwise 0. The probability is $a_j$ that a random sample $u$ from uniform distribution is smaller than $a_j$ because \begin{equation}
+simply compute $a_j = \sigma \left(b_j + \sum_{i=1}^m W_{i,j} v_i \right)$. If $a_j$ is larger than a random sample from uniform distribution, state of $h_j$ is 1, otherwise 0. This method works because the probability that a random sample $u$ from uniform distribution is smaller than $a_j$  is $a_j$: \begin{equation}
 P(u < a_j) = F_{\text{uniform}}(a_j) = a_j.
 \end{equation}
 So we have \begin{equation}
 P(h_j=1|v) = P(u < a_j).
 \end{equation}
-Thus we could sample by testing if $u < a_j$, since it has the same probability from which we want to sample. There are only two states of a unit, so if $u < a_j$ fails the state must be 0. That is why this method of sampling from conditional probability works.\\
+Thus we could sample by testing if $u < a_j$, since it has the same probability from which we want to sample. Each unit has two states. If $u < a_j$ fails, the state is 0.\\
 \\
 In training of RBM, first use input training data as the visible layer to sample the hidden layer from \begin{equation}
 P(h_j=1|v) = \sigma \left(b_j + \sum_{i=1}^m W_{i,j} v_i \right)\,
