@@ -57,7 +57,7 @@ a^{(k)}_i = f((\sum_{j=1}^{n_{k-1}}a^{(k-1)}_jw^{k}_{ij})+b^{(k)}_i)=f(z^{(k)}_i
 \end{gather}
 where $g$ is the activation function that enables nonlinear representation of the Neural Network. Without activation function the network could only represent linear combination of the input and its power would be much weaker. A common activation function is sigmoid function. $z^{(k)}_i$ is the total input of the unit $i$ in layer $k$. It is computed as a weighted sum of the activations of the previous layer. The weight $w^{k}_{ij}$ and the bias $b^k_i$ is learned in bakcpropagation.\\
 \\
-A process called forward propagation computes actions layer by layer. Learning of neural network uses backpropagation, which is a supervised learning method. It computes gradients of loss based on the output and the label, and uses gradient descent to update weights and biases of each layer. Backpropagation is used to refine training in some deep learning models as a step called fine tuning. More details about its implementation are in later sections.
+A process called forward propagation computes actions layer by layer. Learning of neural network uses backpropagation, which is a supervised learning algorithm. It computes error based on the network output and the training label, then uses this error to compute gradient of error with respect to the weights and biases of each layer, and updates model parameters by gradient descent.
 \subsection{Markov Random Field}
 A Markov Random Field, also called the Markov Network, is an undirected graphical model in which each node is independent of the other nodes given all the nodes connected to it. It describes the distribution of variables in the graph.\\
 \\
@@ -70,8 +70,9 @@ Z = \sum_{u} e^{-E(u)},
 $E$ is the energy specified by the model, and $u$ is the set of states of all the nodes such that \begin{equation}
 u=\{v_1, v_2,...,v_n \}
 \end{equation}
+where $v_i$ is the state of node $i$.
 \subsection{Belief Network}
-The Belief Network, which is also referred to as the Bayesian Network, is an directed acyclic graph for probabilistic reasoning. It exhibits the conditional dependencies of the models by associating each node $X$ with a conditional probability $P(X|Pa(X))$ where $Pa(X)$ denotes the parent nodes of $X$, which are the nodes from which edges point to $X$. Here are two of its conditional independence property:\\
+The Belief Network, which is also referred to as the Bayesian Network, is an directed acyclic graph for probabilistic reasoning. It exhibits the conditional dependencies of the models by associating each node $X$ with a conditional probability $P(X|Pa(X))$ where $Pa(X)$ denotes the parents of $X$. Here are two of its conditional independence property:\\
 \\
 1. Each node is conditionally independent of its non-descendants given its parents.\\
 2. Each node is conditionally independent of all other nodes given its Markov blanket, which consists of its parents, children, and children's parents.\\
@@ -79,12 +80,12 @@ The Belief Network, which is also referred to as the Bayesian Network, is an dir
 The inference of Belief Network is to compute the posterior probability distribution\begin{equation}
 P(H|V) = \frac{P(H, V)}{\sum_H P(H,V)}
 \end{equation}
-where $H$ is the set of query variables that forms hidden units, and $V$ is the set of evidence variables that forms visible units.\\
+where $H$ is the set of query variables that forms hidden units, and $V$ is the set of evidence variables that forms visible units. Approximate inference involves sampling to compute posterior.\\
 \\
 The Sigmoid Belief Network is a type of the Belief Network such that \begin{equation}
 P(X_i=1|Pa(X_i)) = \sigma(\sum_{X_j\in Pa(X_i)} W_{ji} X_j + b_i)
 \end{equation}
-where $W_{ji}$ is the weight from $X_j$ to $X_i$. 
+where $W_{ji}$ is the weight assigned to the edge from $X_j$ to $X_i$. 
 \subsection{Deep Learning Models}
 The Restricted Boltzmann Machine is a type of Markov Random Field and is trained in an unsupervised manner. It is the building block for other models and could be used for classification by adding a classifier on top of it.\\
 \\
@@ -94,9 +95,9 @@ The Deep Belief Network is a hybrid of the Restricted Boltzmann Machine and the 
 \\
 The Denoising Autoencoder is a type of neural network that has symmetric structure. It could reconstruct the input data and if properly trained could reconstruct corrupted images. However, unlike neural networks, It could be trained in an unsupervised manner.\\
 \\
-The Deep Boltzmann Machine is another type of Markov Random Field. It is pretrained by stacking Restricted Boltzmann Machines with adjusted weights and biases as an approximation to undirected graphs. Its fine tuninig uses a method named mean field inference.\\
+The Deep Boltzmann Machine is another type of Markov Random Field. It is pretrained by stacking Restricted Boltzmann Machines with adjusted weights and biases as an approximation to undirected graphs. Its fine tuninig uses a method called mean field inference.\\
 \\
-The Deep Canonical Correlation Analysis is used for learning data in multiview or multimodal data by adding a Kernel Canonical Correlation Analysis layer on top of two networks. It locates the projections of the output of multiple networks that maximizes the correlation.
+The Deep Canonical Correlation Analysis is used for learning multiview or multimodal data by adding a Kernel Canonical Correlation Analysis layer on top of two networks. It finds the projections of the outputs that maximizes their correlation.
 
 \clearpage
 \section{Restricted Boltzmann Machine}
@@ -106,7 +107,7 @@ The Deep Canonical Correlation Analysis is used for learning data in multiview o
 \includegraphics[height=1.5in]{RBM.png}
 \caption{Restricted Boltzmann Machine} \label{fig:side:a}
 \end{figure}
-A Restricted Boltzmann Machine (RBM) is a Markov Random Field consisting of one hidden layer and one visible layer. It is an undirected bipartite graph in which connections exist only between the hidden layer and the visible layer. Each unit $x$ is a stochastic binary unit such that\begin{equation}
+A Restricted Boltzmann Machine (RBM) is a Markov Random Field consisting of one hidden layer and one visible layer. It is an undirected bipartite graph in which connections are between the hidden layer and the visible layer. Each unit $x$ is a stochastic binary unit such that\begin{equation}
 state(x)=\begin{cases}1,~~~~p\\
 0,~~~~1-p
 \end{cases}
