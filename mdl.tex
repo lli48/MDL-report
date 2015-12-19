@@ -148,14 +148,14 @@ Similarly,
 P(v_i=1|h) = \sigma \left(b^v_i + \sum_{j=1}^{N_h} W_{i,j} h_j \right).
 \end{equation}
 \\
-A desirable Restricted Boltzmann Machine is the one that maximizes the likelihood $P(x)$ of the input data $x$, which is\begin{align}
+A Restricted Boltzmann Machine maximizes the likelihood $P(x)$ of the input data $x$, which is\begin{align}
 P(x) = \sum_h P(x,h) = \sum_h \frac{1}{Z}e^{-E(h, x)}=\frac{1}{Z}e^{-F(x)}
 \end{align}
 where $F(x)$ is called Free Energy such that \begin{equation}
 F(x) = - \sum_{i=1}^{n_v} b^v_ix_i-\sum_{j=1}^{n_h}\log(1+ exp(b^h_j+\sum_{k=1}^{n_v} W_{kj}x_k)).
 \end{equation}
 \\
-In training, maximization of the average of the likelihood of the training data is achieved by minimization of the average of the negative log likelihood of the training data. Because the direct solution is intractable, gradient descent is used. The updated parameters of gradient descent are weights $\{W_{ij}\}$, biases of hidden units $\{b^h_j\}$ and biases of visible units $\{b^v_i\}$. The gradient is approximated by an algorithm called Contrastive Divergence. More details are in the training section.\\
+In training, maximizing the likelihood of the training data is achieved by minimizing the negative log likelihood of the training data. Because the direct solution is intractable, gradient descent is used, in which weights $\{W_{ij}\}$, biases of hidden units $\{b^h_j\}$, and biases of visible units $\{b^v_i\}$ are updated. The gradient is approximated by an algorithm called Contrastive Divergence. More details are in the training section.\\
 \\
 Express the hidden states $\{h_j\}$ in a row vector $h$, hidden biases $\{b^h_{j}\}$ in a row vector $b^ h$, weights $\{W_{ij}\}$ in a matrix $W$ indicating the weight from the visible layer to the hidden layer, and $\sigma$ is element-wise performed, this could be expressed as \begin{equation}
 a^h =\sigma(v * W + b^h).
