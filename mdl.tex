@@ -114,29 +114,29 @@ state(x)=\begin{cases}1,~~~~p\\
 \end{equation}
 where probability $p$ is defined by the model. Figure 3.1 shows a RBM with four hidden units and six visible units.\\
 \\
-As a class of Markov Random Field, the Restricted Boltzmann Machine defines the  distribution over the visible layer $v$ and the hidden layer $h$ as \begin{equation}
-P(v,h) = \frac{1}{Z} e^{-E(v,h)},
+As a Markov Random Field, a Restricted Boltzmann Machine defines the  distribution over the visible layer $v$ and the hidden layer $h$ as \begin{equation}
+P(v,h) = \frac{1}{Z} e^{-E(v,h)},\label{eq:3}
 \end{equation}
 where $Z$ is a partition function defined by \begin{equation}
 Z = \sum_{v, h} e^{-E(v,h)},
 \end{equation}
-Its energy $E(v,h)$ is defined by \begin{equation}
+Its energy $E(v,h)$ is defined by \begin{equation}\label{eq:1}
 E(v,h) = -\sum_i b^v_i v_i - \sum_j b^h_j h_j -\sum_i \sum_j v_i w_{i,j} h_j
 \end{equation}
-where $b^v_i$ is bias of the \emph{i}th visible unit and $b^h_j$ is bias of the \emph{j}th hidden unit.\\
+where $b^v_i$ is the bias of the \emph{i}th visible unit and $b^h_j$ is the bias of the \emph{j}th hidden unit.\\
 \\
 Given the conditional independence property of the Markov Random Field, in RBM probability of one layer given the other layer could be factorized as
 \begin{gather}
-P(h|v)=\prod_j P(h_j|v)\\
+P(h|v)=\prod_j P(h_j|v) \label{eq:2}\\
 P(v|h)=\prod_i P(v_i|h).
 \end{gather}
-And take the energy function into conditional probability one could acquire \begin{equation}
+Plug equation \ref{eq:1} in equation \ref{eq:3}: \begin{equation} \label{eq:5}
 P(h|v)=\frac{P(h,v)}{\sum_{h'} P(h',v)}=\frac{exp(\sum_i b^v_i v_i + \sum_j b^h_j h_j +\sum_i \sum_j v_i w_{i,j} h_j)}{\sum_{h'} exp(\sum_i b^v_i v_i + \sum_j b^{h'}_j h'_j +\sum_i \sum_j v_i w_{i,j} h'_j)}.
 \end{equation}
-And through derivation one could get\begin{equation}
+And through derivation one could get\begin{equation}\label{eq:4}
 \frac{exp(\sum_i b^v_i v_i + \sum_j b^h_j h_j +\sum_i \sum_j v_i w_{i,j} h_j)}{\sum_{h'} exp(\sum_i b^v_i v_i + \sum_j b^{h'}_j h'_j +\sum_i \sum_j v_i w_{i,j} h'_j)}=\prod_{j}\frac{exp(b^h_j + \sum_{i=1}^m W_{i,j} v_i )}{1+exp(b^h_j + \sum_{i=1}^m w_{i,j} v_i )}.
 \end{equation}
-So combine above four equations one would acquire that
+Combine equation \ref{eq:2}, \ref{eq:5}, and \ref{eq:4} one could get
 \begin{equation}
 P(h_j=1|v) = \sigma \left(b^h_j + \sum_{i=1}^{N_v} W_{i,j} v_i \right)\,
 \end{equation}
