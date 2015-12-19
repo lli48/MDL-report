@@ -157,14 +157,15 @@ F(x) = - \sum_{i=1}^{n_v} b^v_ix_i-\sum_{j=1}^{n_h}\log(1+ exp(b^h_j+\sum_{k=1}^
 \\
 In training, maximizing the likelihood of the training data is achieved by minimizing the negative log likelihood of the training data. Because the direct solution is intractable, gradient descent is used, in which weights $\{W_{ij}\}$, biases of hidden units $\{b^h_j\}$, and biases of visible units $\{b^v_i\}$ are updated. The gradient is approximated by an algorithm called Contrastive Divergence. More details are in the training section.\\
 \\
-Express the hidden states $\{h_j\}$ in a row vector $h$, hidden biases $\{b^h_{j}\}$ in a row vector $b^ h$, weights $\{W_{ij}\}$ in a matrix $W$ indicating the weight from the visible layer to the hidden layer, and $\sigma$ is element-wise performed, this could be expressed as \begin{equation}
+Express the hidden states $\{h_j\}$ in a row vector $h$, hidden biases $\{b^h_{j}\}$ in a row vector $b^ h$, and weights $\{W_{ij}\}$ in a matrix $W$, which indicates the weight from the visible layer to the hidden layer. The activation of hidden layer is computed as
+\begin{equation}
 a^h =\sigma(v * W + b^h).
 \end{equation}
-Since these edges are undirected, it is assumed that this mutual transmission has tied weights such that 
+where $\sigma$ is element-wise performed. Boltzmann Machine acquired tied weights such that
 \begin{equation}
 a^v = \sigma(h * W^{T} + b^v).
 \end{equation}
-In training, training data is first used as a visible layer to acquire hidden states.
+In training, the state of the visible layer is initialized as training data.
 \subsection{Training of Restricted Boltzmann Machine}
 Training of Restricted Boltzmann Machine is the process of updating the weight and the biases of hidden and visible layers by gradient descent. Instead of Stochastic Gradient Descent, which performs update on each data sample, batch learning is used in RBM so that each update is based on a batch of training data. Using the same training data as input, several epochs are run for updating. \\
 \\

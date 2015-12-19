@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  19 DEC 2015 16:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  19 DEC 2015 16:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -507,32 +507,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 125--129
 [8
 
  <./RBM.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 156--160
+Underfull \hbox (badness 10000) in paragraph at lines 156--161
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--173
+Underfull \hbox (badness 10000) in paragraph at lines 170--174
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--173
+Underfull \hbox (badness 10000) in paragraph at lines 170--174
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 180--187
+Underfull \hbox (badness 10000) in paragraph at lines 181--188
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--187
+Underfull \hbox (badness 10000) in paragraph at lines 181--188
 
  []
 
 
-Overfull \hbox (45.52034pt too wide) in paragraph at lines 180--187
+Overfull \hbox (45.52034pt too wide) in paragraph at lines 181--188
 \OT1/cmr/m/n/12 Specif-i-cally, in the (\OT1/cmr/m/it/12 i \OT1/cmr/m/n/12 + 1)
 th sam-ple, $\OML/cmm/m/it/12 x[]$ \OT1/cmr/m/n/12 is sam-pled from $\OML/cmm/m
 /it/12 p\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12
@@ -540,215 +540,215 @@ th sam-ple, $\OML/cmm/m/it/12 x[]$ \OT1/cmr/m/n/12 is sam-pled from $\OML/cmm/m
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--187
+Underfull \hbox (badness 10000) in paragraph at lines 181--188
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 195--198
+Underfull \hbox (badness 10000) in paragraph at lines 196--199
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--206
+Underfull \hbox (badness 10000) in paragraph at lines 201--207
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--206
+Underfull \hbox (badness 10000) in paragraph at lines 201--207
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--216
+Underfull \hbox (badness 10000) in paragraph at lines 214--217
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 228--234
+Underfull \hbox (badness 10000) in paragraph at lines 229--235
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 228--234
+Underfull \hbox (badness 10000) in paragraph at lines 229--235
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 242--246
+Underfull \hbox (badness 10000) in paragraph at lines 243--247
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 248--251
+Underfull \hbox (badness 10000) in paragraph at lines 249--252
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 256--260
+Underfull \hbox (badness 10000) in paragraph at lines 257--261
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 278--282
+Underfull \hbox (badness 10000) in paragraph at lines 279--283
 
  []
 
 [13] [14]
-Underfull \hbox (badness 10000) in paragraph at lines 319--350
+Underfull \hbox (badness 10000) in paragraph at lines 320--351
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--350
+Underfull \hbox (badness 10000) in paragraph at lines 320--351
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--350
+Underfull \hbox (badness 10000) in paragraph at lines 320--351
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--350
+Underfull \hbox (badness 10000) in paragraph at lines 320--351
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--350
+Underfull \hbox (badness 10000) in paragraph at lines 320--351
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--350
+Underfull \hbox (badness 10000) in paragraph at lines 320--351
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--350
+Underfull \hbox (badness 10000) in paragraph at lines 320--351
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--350
+Underfull \hbox (badness 10000) in paragraph at lines 320--351
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--350
+Underfull \hbox (badness 10000) in paragraph at lines 320--351
 
  []
 
 
-Overfull \hbox (17.58034pt too wide) in paragraph at lines 319--350
+Overfull \hbox (17.58034pt too wide) in paragraph at lines 320--351
 \OT1/cmr/m/n/12 classificationError e = clas-si-fyRBM(rbm, clas-si-fier, test-i
 ng-Data, test-ingLabel, sigmoid$[]$t); 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--350
+Underfull \hbox (badness 10000) in paragraph at lines 320--351
 
  []
 
 [15] [16] <DNN.png, id=70, 366.971pt x 249.733pt>
 File: DNN.png Graphic file (type png)
  <use DNN.png>
-Package pdftex.def Info: DNN.png used on input line 357.
+Package pdftex.def Info: DNN.png used on input line 358.
 (pdftex.def)             Requested size: 339.84601pt x 231.26378pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--369
+Underfull \hbox (badness 10000) in paragraph at lines 361--370
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--369
+Underfull \hbox (badness 10000) in paragraph at lines 361--370
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--369
+Underfull \hbox (badness 10000) in paragraph at lines 361--370
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--369
+Underfull \hbox (badness 10000) in paragraph at lines 361--370
 
  []
 
 [17
 
  <./DNN.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 385--393
+Underfull \hbox (badness 10000) in paragraph at lines 386--394
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 385--393
+Underfull \hbox (badness 10000) in paragraph at lines 386--394
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 394--399
+Underfull \hbox (badness 10000) in paragraph at lines 395--400
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 394--399
+Underfull \hbox (badness 10000) in paragraph at lines 395--400
 
  []
 
 [18]
-Underfull \hbox (badness 10000) in paragraph at lines 401--405
+Underfull \hbox (badness 10000) in paragraph at lines 402--406
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 407--411
+Underfull \hbox (badness 10000) in paragraph at lines 408--412
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 414--420
+Underfull \hbox (badness 10000) in paragraph at lines 415--421
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 414--420
+Underfull \hbox (badness 10000) in paragraph at lines 415--421
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 421--440
+Underfull \hbox (badness 10000) in paragraph at lines 422--441
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 421--440
+Underfull \hbox (badness 10000) in paragraph at lines 422--441
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 421--440
+Underfull \hbox (badness 10000) in paragraph at lines 422--441
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 421--440
+Underfull \hbox (badness 10000) in paragraph at lines 422--441
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 421--440
+Underfull \hbox (badness 10000) in paragraph at lines 422--441
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 421--440
+Underfull \hbox (badness 10000) in paragraph at lines 422--441
 
  []
 
 
-Overfull \hbox (2.16068pt too wide) in paragraph at lines 421--440
+Overfull \hbox (2.16068pt too wide) in paragraph at lines 422--441
 \OT1/cmr/m/n/12 VI. clas-si-fi-ca-tion-Error \OT1/cmr/bx/n/12 clas-sify\OT1/cmr
 /m/n/12 (dataInBatch $&$testingSet, dataIn-Batch $&$testinglabel); 
  []
@@ -756,27 +756,27 @@ Overfull \hbox (2.16068pt too wide) in paragraph at lines 421--440
 [19] [20] <DBN.png, id=85, 469.755pt x 247.324pt>
 File: DBN.png Graphic file (type png)
  <use DBN.png>
-Package pdftex.def Info: DBN.png used on input line 447.
+Package pdftex.def Info: DBN.png used on input line 448.
 (pdftex.def)             Requested size: 384.35579pt x 202.35622pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 450--452
+Underfull \hbox (badness 10000) in paragraph at lines 451--453
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 464--468
+Underfull \hbox (badness 10000) in paragraph at lines 465--469
 
  []
 
 [21
 
  <./DBN.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 470--474
+Underfull \hbox (badness 10000) in paragraph at lines 471--475
 
  []
 
 
-Overfull \hbox (10.40459pt too wide) detected at line 487
+Overfull \hbox (10.40459pt too wide) detected at line 488
 [] \OML/cmm/m/it/12 Q\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 h\OMS/cmsy/m/n/12 j\OML/
 cmm/m/it/12 x\OT1/cmr/m/n/12 ) [](\OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m
 /it/12 h\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 ) + \OML/cmm/m/it/1
@@ -792,27 +792,27 @@ cmm/m/it/12 x\OT1/cmr/m/n/12 ))\OML/cmm/m/it/12 :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 490--494
+Underfull \hbox (badness 10000) in paragraph at lines 491--495
 
  []
 
 [22] <DBNclass.png, id=93, 360.547pt x 469.755pt>
 File: DBNclass.png Graphic file (type png)
  <use DBNclass.png>
-Package pdftex.def Info: DBNclass.png used on input line 504.
+Package pdftex.def Info: DBNclass.png used on input line 505.
 (pdftex.def)             Requested size: 277.34145pt x 361.34999pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 495--507
+Underfull \hbox (badness 10000) in paragraph at lines 496--508
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 495--507
+Underfull \hbox (badness 10000) in paragraph at lines 496--508
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 495--507
+Underfull \hbox (badness 10000) in paragraph at lines 496--508
 
  []
 
@@ -820,43 +820,43 @@ Underfull \hbox (badness 10000) in paragraph at lines 495--507
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 508--527
+Underfull \hbox (badness 10000) in paragraph at lines 509--528
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 508--527
+Underfull \hbox (badness 10000) in paragraph at lines 509--528
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 508--527
+Underfull \hbox (badness 10000) in paragraph at lines 509--528
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 508--527
+Underfull \hbox (badness 10000) in paragraph at lines 509--528
 
  []
 
 
-Overfull \hbox (21.97789pt too wide) in paragraph at lines 508--527
+Overfull \hbox (21.97789pt too wide) in paragraph at lines 509--528
 \OT1/cmr/m/n/12 IV. void \OT1/cmr/bx/n/12 train-With-Clas-si-fier\OT1/cmr/m/n/1
 2 (dataInBatch $&$trainingData, dataIn-Batch $&$trainingLabel,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 508--527
+Underfull \hbox (badness 10000) in paragraph at lines 509--528
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 508--527
+Underfull \hbox (badness 10000) in paragraph at lines 509--528
 
  []
 
 
-Overfull \hbox (2.16068pt too wide) in paragraph at lines 508--527
+Overfull \hbox (2.16068pt too wide) in paragraph at lines 509--528
 \OT1/cmr/m/n/12 VI. clas-si-fi-ca-tion-Error \OT1/cmr/bx/n/12 clas-sify\OT1/cmr
 /m/n/12 (dataInBatch $&$testingSet, dataIn-Batch $&$testinglabel); 
  []
@@ -865,185 +865,185 @@ Overfull \hbox (2.16068pt too wide) in paragraph at lines 508--527
 File: AE.png Graphic file (type png)
 
 <use AE.png>
-Package pdftex.def Info: AE.png used on input line 534.
+Package pdftex.def Info: AE.png used on input line 535.
 (pdftex.def)             Requested size: 270.71768pt x 231.26378pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 540--549
+Underfull \hbox (badness 10000) in paragraph at lines 541--550
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 540--549
+Underfull \hbox (badness 10000) in paragraph at lines 541--550
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 540--549
+Underfull \hbox (badness 10000) in paragraph at lines 541--550
 
  []
 
 [26
 
  <./AE.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 572--577
+Underfull \hbox (badness 10000) in paragraph at lines 573--578
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 580--585
+Underfull \hbox (badness 10000) in paragraph at lines 581--586
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 586--590
+Underfull \hbox (badness 10000) in paragraph at lines 587--591
 
  []
 
 [27]
-Underfull \hbox (badness 10000) in paragraph at lines 608--612
+Underfull \hbox (badness 10000) in paragraph at lines 609--613
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 619--623
+Underfull \hbox (badness 10000) in paragraph at lines 620--624
 
  []
 
 [28]
-Underfull \hbox (badness 10000) in paragraph at lines 634--636
+Underfull \hbox (badness 10000) in paragraph at lines 635--637
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 642--645
+Underfull \hbox (badness 10000) in paragraph at lines 643--646
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 647--652
+Underfull \hbox (badness 10000) in paragraph at lines 648--653
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 647--652
+Underfull \hbox (badness 10000) in paragraph at lines 648--653
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 653--675
+Underfull \hbox (badness 10000) in paragraph at lines 654--676
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 653--675
+Underfull \hbox (badness 10000) in paragraph at lines 654--676
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 653--675
+Underfull \hbox (badness 10000) in paragraph at lines 654--676
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 653--675
+Underfull \hbox (badness 10000) in paragraph at lines 654--676
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 653--675
+Underfull \hbox (badness 10000) in paragraph at lines 654--676
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 653--675
+Underfull \hbox (badness 10000) in paragraph at lines 654--676
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 653--675
+Underfull \hbox (badness 10000) in paragraph at lines 654--676
 
  []
 
 [29] [30] <DBM.png, id=122, 325.215pt x 249.3315pt>
 File: DBM.png Graphic file (type png)
  <use DBM.png>
-Package pdftex.def Info: DBM.png used on input line 682.
+Package pdftex.def Info: DBM.png used on input line 683.
 (pdftex.def)             Requested size: 263.94376pt x 202.35622pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 685--687
+Underfull \hbox (badness 10000) in paragraph at lines 686--688
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 689--692
+Underfull \hbox (badness 10000) in paragraph at lines 690--693
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--707
+Underfull \hbox (badness 10000) in paragraph at lines 698--708
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--707
+Underfull \hbox (badness 10000) in paragraph at lines 698--708
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--707
+Underfull \hbox (badness 10000) in paragraph at lines 698--708
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--707
+Underfull \hbox (badness 10000) in paragraph at lines 698--708
 
  []
 
 [31
 
  <./DBM.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 723--729
+Underfull \hbox (badness 10000) in paragraph at lines 724--730
 
  []
 
 <mf1.png, id=128, 369.38pt x 481.8pt>
 File: mf1.png Graphic file (type png)
  <use mf1.png>
-Package pdftex.def Info: mf1.png used on input line 733.
+Package pdftex.def Info: mf1.png used on input line 734.
 (pdftex.def)             Requested size: 193.92175pt x 252.94499pt.
 
 <mf2.png, id=129, 367.3725pt x 356.33125pt>
 File: mf2.png Graphic file (type png)
  <use mf2.png>
-Package pdftex.def Info: mf2.png used on input line 734.
+Package pdftex.def Info: mf2.png used on input line 735.
 (pdftex.def)             Requested size: 223.5251pt x 216.81pt.
  [32]
-Underfull \hbox (badness 10000) in paragraph at lines 740--756
+Underfull \hbox (badness 10000) in paragraph at lines 741--757
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 740--756
+Underfull \hbox (badness 10000) in paragraph at lines 741--757
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 740--756
+Underfull \hbox (badness 10000) in paragraph at lines 741--757
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 740--756
+Underfull \hbox (badness 10000) in paragraph at lines 741--757
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 740--756
+Underfull \hbox (badness 10000) in paragraph at lines 741--757
 
  []
 
 [33 <./mf1.png> <./mf2.png>] [34]
-Underfull \hbox (badness 10000) in paragraph at lines 781--784
+Underfull \hbox (badness 10000) in paragraph at lines 782--785
 
  []
 
@@ -1052,27 +1052,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 781--784
 ] <DCCA.png, id=144, 527.571pt x 326.018pt>
 File: DCCA.png Graphic file (type png)
  <use DCCA.png>
-Package pdftex.def Info: DCCA.png used on input line 810.
+Package pdftex.def Info: DCCA.png used on input line 811.
 (pdftex.def)             Requested size: 327.4529pt x 202.35622pt.
 
 <modalPrediction1.png, id=145, 482.55281pt x 215.30438pt>
 File: modalPrediction1.png Graphic file (type png)
 
 <use modalPrediction1.png>
-Package pdftex.def Info: modalPrediction1.png used on input line 816.
+Package pdftex.def Info: modalPrediction1.png used on input line 817.
 (pdftex.def)             Requested size: 194.37251pt x 86.72377pt.
 
 <modalPrediction2.png, id=146, 522.753pt x 383.834pt>
 File: modalPrediction2.png Graphic file (type png)
 
 <use modalPrediction2.png>
-Package pdftex.def Info: modalPrediction2.png used on input line 817.
+Package pdftex.def Info: modalPrediction2.png used on input line 818.
 (pdftex.def)             Requested size: 177.16733pt x 130.08621pt.
  <DBMmodals.png, id=147, 517.935pt x 312.367pt>
 File: DBMmodals.png Graphic file (type png)
 
 <use DBMmodals.png>
-Package pdftex.def Info: DBMmodals.png used on input line 823.
+Package pdftex.def Info: DBMmodals.png used on input line 824.
 (pdftex.def)             Requested size: 263.62964pt x 158.99377pt.
 
 
@@ -1081,227 +1081,227 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <aemodal.png, id=148, 506.693pt x 368.577pt>
 File: aemodal.png Graphic file (type png)
  <use aemodal.png>
-Package pdftex.def Info: aemodal.png used on input line 833.
+Package pdftex.def Info: aemodal.png used on input line 834.
 (pdftex.def)             Requested size: 178.83739pt x 130.08621pt.
 
 <prediction.png, id=149, 514.723pt x 373.395pt>
 File: prediction.png Graphic file (type png)
  <use prediction.png>
-Package pdftex.def Info: prediction.png used on input line 834.
+Package pdftex.def Info: prediction.png used on input line 835.
 (pdftex.def)             Requested size: 179.32321pt x 130.08621pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 826--838
+Underfull \hbox (badness 10000) in paragraph at lines 827--839
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 826--838
+Underfull \hbox (badness 10000) in paragraph at lines 827--839
 
  []
 
 [36 <./DCCA.png>] [37 <./modalPrediction1.png> <./modalPrediction2.png> <./DBMm
 odals.png>] [38 <./aemodal.png> <./prediction.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 842--851
+Underfull \hbox (badness 10000) in paragraph at lines 843--852
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 842--851
+Underfull \hbox (badness 10000) in paragraph at lines 843--852
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 842--851
+Underfull \hbox (badness 10000) in paragraph at lines 843--852
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 852--859
+Underfull \hbox (badness 10000) in paragraph at lines 853--860
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 852--859
+Underfull \hbox (badness 10000) in paragraph at lines 853--860
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 852--859
+Underfull \hbox (badness 10000) in paragraph at lines 853--860
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 861--870
+Underfull \hbox (badness 10000) in paragraph at lines 862--871
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 861--870
+Underfull \hbox (badness 10000) in paragraph at lines 862--871
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 861--870
+Underfull \hbox (badness 10000) in paragraph at lines 862--871
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 861--870
+Underfull \hbox (badness 10000) in paragraph at lines 862--871
 
  []
 
 [39
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 871--886
+Underfull \hbox (badness 10000) in paragraph at lines 872--887
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 871--886
+Underfull \hbox (badness 10000) in paragraph at lines 872--887
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 871--886
+Underfull \hbox (badness 10000) in paragraph at lines 872--887
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 871--886
+Underfull \hbox (badness 10000) in paragraph at lines 872--887
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 871--886
+Underfull \hbox (badness 10000) in paragraph at lines 872--887
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 871--886
+Underfull \hbox (badness 10000) in paragraph at lines 872--887
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 871--886
+Underfull \hbox (badness 10000) in paragraph at lines 872--887
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 887--903
+Underfull \hbox (badness 10000) in paragraph at lines 888--904
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 887--903
+Underfull \hbox (badness 10000) in paragraph at lines 888--904
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 887--903
+Underfull \hbox (badness 10000) in paragraph at lines 888--904
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 887--903
+Underfull \hbox (badness 10000) in paragraph at lines 888--904
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 887--903
+Underfull \hbox (badness 10000) in paragraph at lines 888--904
 
  []
 
 [40]
-Underfull \hbox (badness 10000) in paragraph at lines 904--925
+Underfull \hbox (badness 10000) in paragraph at lines 905--926
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 904--925
+Underfull \hbox (badness 10000) in paragraph at lines 905--926
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 904--925
+Underfull \hbox (badness 10000) in paragraph at lines 905--926
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 904--925
+Underfull \hbox (badness 10000) in paragraph at lines 905--926
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 904--925
+Underfull \hbox (badness 10000) in paragraph at lines 905--926
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 904--925
+Underfull \hbox (badness 10000) in paragraph at lines 905--926
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 904--925
+Underfull \hbox (badness 10000) in paragraph at lines 905--926
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 904--925
+Underfull \hbox (badness 10000) in paragraph at lines 905--926
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 904--925
+Underfull \hbox (badness 10000) in paragraph at lines 905--926
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 904--925
+Underfull \hbox (badness 10000) in paragraph at lines 905--926
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 904--925
+Underfull \hbox (badness 10000) in paragraph at lines 905--926
 
  []
 
 
-Overfull \hbox (12.62213pt too wide) in paragraph at lines 929--938
+Overfull \hbox (12.62213pt too wide) in paragraph at lines 930--939
  [][] 
  []
 
 [41] [42]
-Underfull \hbox (badness 10000) in paragraph at lines 945--948
+Underfull \hbox (badness 10000) in paragraph at lines 946--949
 
  []
 
 <ae3.png, id=178, 168.63pt x 347.2975pt>
 File: ae3.png Graphic file (type png)
  <use ae3.png>
-Package pdftex.def Info: ae3.png used on input line 956.
+Package pdftex.def Info: ae3.png used on input line 957.
 (pdftex.def)             Requested size: 122.82097pt x 252.94499pt.
 
 <ae2.png, id=179, 168.63pt x 348.30125pt>
 File: ae2.png Graphic file (type png)
  <use ae2.png>
-Package pdftex.def Info: ae2.png used on input line 957.
+Package pdftex.def Info: ae2.png used on input line 958.
 (pdftex.def)             Requested size: 122.46332pt x 252.94499pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 949--961
+Underfull \hbox (badness 10000) in paragraph at lines 950--962
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 949--961
+Underfull \hbox (badness 10000) in paragraph at lines 950--962
 
  []
 
 <avletterRec.png, id=180, 323.2075pt x 123.46124pt>
 File: avletterRec.png Graphic file (type png)
  <use avletterRec.png>
-Package pdftex.def Info: avletterRec.png used on input line 964.
+Package pdftex.def Info: avletterRec.png used on input line 965.
 (pdftex.def)             Requested size: 245.96574pt x 93.95122pt.
 
 
@@ -1310,7 +1310,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [43
 
 ] [44 <./ae3.png> <./ae2.png> <./avletterRec.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 973--976
+Underfull \hbox (badness 10000) in paragraph at lines 974--977
 
  []
 
@@ -1350,7 +1350,7 @@ e/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
 2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
 14/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/201
 4/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on mdl.pdf (47 pages, 1248697 bytes).
+Output written on mdl.pdf (47 pages, 1248652 bytes).
 PDF statistics:
  252 PDF objects out of 1000 (max. 8388607)
  152 compressed objects within 2 object streams
