@@ -1,7 +1,7 @@
 \contentsline {section}{\numberline {1}Multimodal Deep Learning Library}{4}
 \contentsline {subsection}{\numberline {1.1}Introduction}{4}
 \contentsline {subsection}{\numberline {1.2}Content Description}{4}
-\contentsline {section}{\numberline {2}Network Brief}{5}
+\contentsline {section}{\numberline {2}Network Survey}{5}
 \contentsline {subsection}{\numberline {2.1}Neural Network}{5}
 \contentsline {subsection}{\numberline {2.2}Markov Random Field}{5}
 \contentsline {subsection}{\numberline {2.3}Belief Network}{6}
