@@ -119,10 +119,10 @@ As a Markov Random Field, a Restricted Boltzmann Machine defines the  distributi
 P(v,h) = \frac{1}{Z} e^{-E(v,h)},\label{eq:3}
 \end{equation}
 where $Z$ is a partition function defined by \begin{equation}
-Z = \sum_{v, h} e^{-E(v,h)},
+Z = \sum_{v, h} e^{-E(v,h)}.
 \end{equation}
 Its energy $E(v,h)$ is defined by \begin{equation}\label{eq:1}
-E(v,h) = -\sum_i b^v_i v_i - \sum_j b^h_j h_j -\sum_i \sum_j v_i w_{i,j} h_j
+E(v,h) = -\sum_i b^v_i v_i - \sum_j b^h_j h_j -\sum_i \sum_j v_i w_{i,j} h_j,
 \end{equation}
 where $b^v_i$ is the bias of the \emph{i}th visible unit and $b^h_j$ is the bias of the \emph{j}th hidden unit.\\
 \\
@@ -139,7 +139,7 @@ And through derivation one could get\begin{equation}\label{eq:4}
 \end{equation}
 Combine equation \eqref{eq:2}, \eqref{eq:5}, and \eqref{eq:4} one could get
 \begin{equation}
-P(h_j=1|v) = \sigma \left(b^h_j + \sum_{i=1}^{N_v} W_{i,j} v_i \right)\,
+P(h_j=1|v) = \sigma \left(b^h_j + \sum_{i=1}^{N_v} W_{i,j} v_i \right),
 \end{equation}
 where $\sigma$ is a sigmoid function\begin{equation}
 \sigma(t) = \frac{1} {1 + exp(-t)}.
@@ -150,7 +150,7 @@ P(v_i=1|h) = \sigma \left(b^v_i + \sum_{j=1}^{N_h} W_{i,j} h_j \right).
 \end{equation}
 \\
 A Restricted Boltzmann Machine maximizes the likelihood $P(x)$ of the input data $x$, which is\begin{align}
-P(x) = \sum_h P(x,h) = \sum_h \frac{1}{Z}e^{-E(h, x)}=\frac{1}{Z}e^{-F(x)}
+P(x) = \sum_h P(x,h) = \sum_h \frac{1}{Z}e^{-E(h, x)}=\frac{1}{Z}e^{-F(x)},
 \end{align}
 where $F(x)$ is called Free Energy such that \begin{equation}
 F(x) = - \sum_{i=1}^{n_v} b^v_ix_i-\sum_{j=1}^{n_h}\log(1+ exp(b^h_j+\sum_{k=1}^{n_v} W_{kj}x_k)).
@@ -162,7 +162,7 @@ Express the hidden states $\{h_j\}$ in a row vector $h$, hidden biases $\{b^h_{j
 \begin{equation}
 a^h =\sigma(v * W + b^h).
 \end{equation}
-where $\sigma$ is element-wise performed. Boltzmann Machine acquired tied weights such that
+where $\sigma$ is element-wise performed. Restricted Boltzmann Machine acquired tied weights such that
 \begin{equation}
 a^v = \sigma(h * W^{T} + b^v).
 \end{equation}
