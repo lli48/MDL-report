@@ -22,7 +22,7 @@
 \contentsline {subsection}{\numberline {5.1}Logic of Deep Belief Network}{20}
 \contentsline {subsection}{\numberline {5.2}Training of Deep Belief Network}{21}
 \contentsline {subsection}{\numberline {5.3}Classification of Deep Belief Network}{22}
-\contentsline {subsection}{\numberline {5.4}Implementation of Deep Belief Network}{23}
+\contentsline {subsection}{\numberline {5.4}Implementation of Deep Belief Network}{24}
 \contentsline {subsection}{\numberline {5.5}Summary}{24}
 \contentsline {section}{\numberline {6}Denoising Autoencoder}{25}
 \contentsline {subsection}{\numberline {6.1}Construction of Autoencoder}{25}

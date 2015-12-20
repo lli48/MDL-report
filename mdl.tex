@@ -460,7 +460,7 @@ And in the belief network, each node is independent of its ancestors given its p
 P(v| h_1, ..., h_N) = P(v|h_1),\\
 P(h_k| h_{k+1},..., h_{N}) = P(h_k| h_{k+1}).
 \end{gather}
-So \begin{equation}
+So we have \begin{equation}
 P(v, h_1, ..., h_N)  = P(v| h_1) \times\left(\prod_{k=1}^{N-2}  P(h_k| h_{k+1}))\right)\times P(h_{N-1},h_N),
 \end{equation}
 where $P(v| h_1) \times\left(\prod_{k=1}^{N-2}  P(h_k| h_{k+1}))\right)$ is the distribution over the Sigmoid Belief Network and $P(h_{N-1},h_N)$ is the distribution over Restricted Boltzmann Machine.\\
@@ -473,14 +473,28 @@ where $P(h_{N-1},h_N, y)$ could be regarded as the distribution over a RBM which
 \\
 In pretraining of the Deep Belief Network, pretrained RBMs are stacked like in pretraining the Deep Neural Network. However, since this is not a feedforward neural network. A different fine tuning method called Up-Down algorithm is used.
 \subsection{Training of Deep Belief Network}
-Training a Deep Belief Network is to find model parameters that maximize the likelihood of the training data. Because of the concavity of the logarithm function, the lower bound of the log likelihood of the training data $x$ could be found:\begin{equation}
+Training a Deep Belief Network is to construct model that maximizes the likelihood of the training data. With the concavity of the logarithm function, the lower bound of the log likelihood of the training data $x$ could be found:\begin{equation}\label{eq:10}
 \log P(x)=\log\left(\sum_h Q(h|x)\frac{P(x,h)}{Q(h|x)}\right)\geq \sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)}
 \end{equation}
-and 
+and we have
 \begin{equation}\label{eq:8}
-\sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)}= \sum_h Q(h|x)\log(P(x|h) + P(h))-\sum_h Q(h|x)\log Q(h|x)
+\sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)}= \sum_h Q(h|x)\log P(x, h)-\sum_h Q(h|x)\log Q(h|x)
 \end{equation}
-where $Q(h|x)$ is an approximation to the true probability $P(h|x)$ of the model. If the weights and biases of the first hidden layer and the visible layer are given, it is clear that in the right-hand side of equation \eqref{eq:8}, only $P(h)$ is not fixed, and could be computed as \begin{equation}
+where $Q(h|x)$ is an approximation to the true probability $P(h|x)$ of the model.\\
+\\
+If $Q(h|x) = P(h|x)$, plug it in the right-hand side of \eqref{eq:8} we have \begin{equation}\label{eq:11}
+\begin{split}
+&\sum_h P(h|x)(\log P(h|x) + \log P(x))-\sum_h P(h|x)\log P(h|x)\\
+& = \sum_h P(h|x)\log P(x) =\log P(x)\sum_h P(h|x) =\log P(x).
+\end{split}
+\end{equation}
+Combine equation \eqref{eq:11}, \eqref{eq:8}  with \eqref{eq:10}, we could find that when $Q(h|x) = P(h|x)$, the lower bound is tight. Moreover, the more different $Q(h|x)$ is from $P(h|x)$, the less tight the bound is.\\
+\\
+Consequently, in training we want to find approximation $Q(h|x)$ with high accuracy  so that bound is maximized. This could be done by stacking pretrained RBMs. The lower bound of \eqref{eq:10} could be factorized as
+\begin{equation}\label{eq:9}
+\sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)}= \sum_h Q(h|x)(\log P(x|h) + \log P(h))-\sum_h Q(h|x)\log Q(h|x)
+\end{equation}
+In the right-hand side of equation \eqref{eq:9}, $Q(h|x)$ and $P(x|h)$ are given by the first trained RBM, and $P(h)$ would be given by the pretrained RBM stacked on it. \begin{equation}
 P(h) = \sum_{h^{(2)}}P(h, h^{(2)})
 \end{equation}
 which is based on the weight between the first hidden layer and the second hidden layer. This is why greedy layer-wise pretraining works. Furthermore, \begin{equation}
