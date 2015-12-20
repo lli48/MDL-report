@@ -198,7 +198,7 @@ P(u < a_j) = F_{\text{uniform}}(a_j) = a_j.
 So we have \begin{equation}
 P(h_j=1|v) = P(u < a_j).
 \end{equation}
-Thus we could sample by testing if $u < a_j$, since it has the same probability from which we want to sample. Each unit has two states. If $u < a_j$ fails, the state is 0.\\
+Thus we could sample by testing if $u < a_j$, since it has probability $a_j$. Each unit has two states. If $u < a_j$ fails, the state is 0.\\
 \\
 In training, first use training data to compute hidden layer posterior using \begin{equation}
 P(h_j=1|v) = \sigma \left(b_j + \sum_{i=1}^m W_{i,j} v_i \right).
