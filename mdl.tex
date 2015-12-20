@@ -200,10 +200,10 @@ P(h_j=1|v) = P(u < a_j).
 \end{equation}
 Thus we could sample by testing if $u < a_j$, since it has probability $a_j$. Each unit has two states. If $u < a_j$ fails, the state is 0.\\
 \\
-In training, first use training data to compute hidden layer posterior using \begin{equation}
+In training, first use training data to compute hidden layer posterior with \begin{equation}
 P(h_j=1|v) = \sigma \left(b_j + \sum_{i=1}^m W_{i,j} v_i \right).
 \end{equation}
-The hidden layer states together with the data form the first sample. Then use Gibbs sampling to compute the second sample.\\
+The hidden layer state together with the data form the first sample. Then use Gibbs sampling to compute the second sample.\\
 \\
 The gradient of the visible bias is \begin{equation}
 \nabla b^v_{i} = \langle v_i\rangle_{recon} - \langle v_i\rangle_{data},
@@ -318,7 +318,7 @@ Expressed in row vectors it is \begin{equation}
 \end{equation}
 where $(a^h)^T$ is the transpose of row vector $a^h$. This gradient is used in batch learning.
 \subsection{Implementation of RBM}
-My implementation of RBM is in the header file rbm.hpp. The RBM class stores information of one hidden layer and one activation layer. It has methods to train a learning or classifier layer. Here is a selected list of methods of class rbm:\\
+My implementation of RBM is in the header file rbm.hpp. The RBM class stores information of one hidden layer and one activation layer. Here is a selected list of methods of class rbm:\\
 \\
 I. void \textbf{dropout}(double i)\\
 -Set dropout rate as input i.\\
