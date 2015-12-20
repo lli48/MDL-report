@@ -49,16 +49,16 @@ Section 2 goes through common networks. Section 3 to section 7 give descriptions
 In sections 3 to 7, each section explains principles and implementations of each model. Section 8 introduces two models in Multimodal learning.
 \clearpage
 \section{Network Survey}
-This section includes a brief description of network models that are mentioned in this documents and a summary of deep learning models of MDL.
+This section includes a brief description of network models that are mentioned in this document and a summary of deep learning models of MDL.
 \subsection{Neural Network}
 The Neural Network is a directed graph consists of multiple layers of neurons, which is also referred to as units. In general there is no connection between units of the same layer and there are only connections between adjacent layers. The first layer is the input and is referred to as visible layer $v$. Above the visible layer there are multiple hidden layers $\{h_1, h_2,..., h_n\}$. And the output of the last hidden layer forms the output layer $o$.\\
 \\
-In hidden layers, neurons in layer $h_{i}$ receives input from the previous layer,  $h_{i - 1}$ or $v$, and the output of $h_i$ is the input to the next layer, $h_{i+1}$ or $o$. The value transmitted between layers is called action or emission. Action is computed as:\begin{gather}
+In hidden layers, neurons in layer $h_{i}$ receives input from the previous layer,  $h_{i - 1}$ or $v$, and the output of $h_i$ is the input to the next layer, $h_{i+1}$ or $o$. The value transmitted between layers is called activation or emission. Activation is computed as:\begin{gather}
 a^{(k)}_i = f((\sum_{j=1}^{n_{k-1}}a^{(k-1)}_jw^{k}_{ij})+b^{(k)}_i)=f(z^{(k)}_i)
 \end{gather}
 where $g$ is the activation function that enables nonlinear representation of the Neural Network. Without activation function the network could only represent linear combination of the input and its power would be much weaker. A common activation function is sigmoid function. $z^{(k)}_i$ is the total input of the unit $i$ in layer $k$. It is computed as a weighted sum of the activations of the previous layer. The weight $w^{k}_{ij}$ and the bias $b^k_i$ is learned in bakcpropagation.\\
 \\
-A process called forward propagation computes actions layer by layer. Learning of neural network uses backpropagation, which is a supervised learning algorithm. It computes error based on the network output and the training label, then uses this error to compute gradient of error with respect to the weights and biases of each layer, and updates model parameters by gradient descent.
+A process called forward propagation computes activations layer by layer. Learning of neural network uses backpropagation, which is a supervised learning algorithm. It computes error based on the network output and the training label, then uses this error to compute gradient of error with respect to the weights and biases of each layer, and updates model parameters by gradient descent.
 \subsection{Markov Random Field}
 A Markov Random Field, also called the Markov Network, is an undirected graphical model in which each node is independent of the other nodes given all the nodes connected to it. It describes the distribution of variables in the graph.\\
 \\
