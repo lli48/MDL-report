@@ -12,6 +12,7 @@
 \usepackage{authblk}
 \usepackage{mathtools}
 \usepackage{multirow}
+\usepackage{fixmath}
 \captionsetup{figurewithin=section}
 \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
 \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
@@ -639,7 +640,7 @@ For $\delta_i^{(N)}$, use chain rule\begin{equation}
 \delta_i^{(N)} = \frac{\partial L}{\partial z^{(N)}_i}=\sum_{p=1}^{n_N} \frac{\partial L}{\partial a^{(N)}_p} \frac{\partial a^{(N)}_p}{\partial z^{(N)}_i} = \frac{\partial L}{\partial a^{(N)}_i} \frac{\partial a^{(N)}_i}{\partial z^{(N)}_i} = (a^{(N)}_i-a^{(0)}_i)\times a^{(N)}_i(1-a^{(N)}_i).
 \end{equation}
 \subsection{Denoising Autoencoder}
-The Denoising Autoencoder reconstructs the input from its corrupted version. So it could predict missing values and it is quite straightforward to observe its performance when the input is images. By putting a denoise mask on the input, the Autoencoders could be transformed to the Denoising Autoencoders. Here is how to make this transformation:\\
+The Denoising Autoencoder reconstructs the input from its corrupted version. So it could predict missing values and it is quite straightforward to observe its performance when the input is image data. By putting a denoise mask on the input, the Autoencoders could be transformed to the Denoising Autoencoders. Here is how to make this transformation:\\
 \\
 Firstly a denoise rate $r$ is chosen, and the mask is constructed as follows:\begin{equation}
 m_i=\begin{cases} 
@@ -648,17 +649,17 @@ m_i=\begin{cases}
 \end{cases}
 ~~1\leq i\leq n_N\\
 \end{equation}
-where $U_i$ is the $i$th sample from uniform distribution, $n_N$ is the size of the last layer, which is also the input dimension of the Autoencoder.\\
+where $U_i$ is the $i$th sample from uniform distribution, $n_N$ is the size of the last layer, which is also the dimension of input data.\\
 \\
-Secondly compute the corrupted input for the Autoencoder\begin{equation}
-a^{(inC)} = a^{(in)}\cdot m = \sum_{i=1}^{n_N} a^{(in)}_im_i
+Secondly compute the corrupted input data\begin{equation}
+a^{(c)} = a^{(0)}\cdot m = \sum_{i=1}^{n_N} a^{(0)}_im_i
 \end{equation}\\
 \\
-Finally use $a^{(inC)}$ as the training data to compute the reconstruction and still use the uncorrupted input $a^{(in)}$ as labels in fine tuning.\\
+Finally use $a^{(c)}$ as the training data to compute the reconstruction and still use the uncorrupted data $a^{(0)}$ as labels in fine tuning.\\
 \\
-Fine tuning in the Denoising Autoencoder makes more improvement of reconstruction than in the Autoencoder, and is crucial in the Denoising Autoencoder. Sometimes fine tuning in the Autoencoder may not have obvious improvement whereas in the Denoising Autoencoder the improvement is obvious. 
+Fine tuning in the Denoising Autoencoder makes more improvement in reconstruction than in the Autoencoder, and is crucial in the Denoising Autoencoder.
 \subsection{Implementation of Denoising Autoencoder}
-The implementation of DAE is in the header file autoencoder.hpp. Its structure is similar to DBN:\\
+The implementation of DAE is in the header file autoencoder.hpp.\\
 \\
 I. void \textbf{addLayer}(RBMlayer $\&$l)\\
 Add a layer to current DAE. This object of class RBMlayer should store information of layer size, weight, bias, etc. It could also be modified after added to DAE.\\
@@ -676,12 +677,12 @@ V. dataInBatch \textbf{g$\_$reconstruction}()\\
 Get the reconstruction.\\
 \\
 VI. void \textbf{fineTuning}(dataInBatch $\&$originSet, dataInBatch $\&$inputSet, LossType l)\\
-Fine tune DAE using backpropagation. Unlike DBN, LossType should be MSE instead of CrossEntropy.\\
+Use backpropagation. Unlike DBN, argument LossType should be MSE instead of CrossEntropy.\\
 \\
 VI. void \textbf{denoise}(double dr)\\
 Set the denoise rate as dr. When model is in training, it will detect if denoise rate is set. So if this method is called before training, the Denoising Autoencoder will be trained automatically. Otherwise the Autoencoder will be trained.
 \subsection{Summary}
-Construction of the Denoising Autoencoder requires pretraining half of its layers, the other half is set by its symmetric structure. Fine tuninig is crucial because it is the only step that uncorrupted data is used and the model knows what it should learn. The performance of Denoising Autoencoder is straightforward to assess because one could observe the reconstructed image of this model.  
+Construction of the Denoising Autoencoder requires pretraining half of its layers, the other half is set by its symmetric structure. Fine tuninig is crucial for Denoising Autoencoder because it uses uncorrupted data to modify the model trained with corrupted data. The performance of Denoising Autoencoder is straightforward to assess because one could observe the reconstructed images.
 \clearpage
 \section{Deep Boltzmann Machine}
 \subsection{Logic of Deep Boltzmann Machine}
@@ -690,52 +691,96 @@ Construction of the Denoising Autoencoder requires pretraining half of its layer
 \includegraphics[height=2.8in]{DBM.png}
 \caption{Deep Boltzmann Machine} \label{fig:side:a}
 \end{figure}
-A Deep Boltzmann Machine is a Markov Random Field consisting of multiple layers. Connections exist only between adjacent layers. Intuitively, it could incorporate top-down feedback when computing bottom-up approximations.\\
+A Deep Boltzmann Machine(DBM) is a Markov Random Field consisting of multiple layers. Connections exist only between adjacent layers. Intuitively, it could incorporate top-down feedback when computing bottom-up approximations. Figure 7.1 shows a DBM.\\
 \\
 The energy function of a Deep Boltzmann Machine with $N$ hidden layers is\begin{equation}
 E(v, h^{(1)},..h^{(N)})=-v^{T}W^{(1)}h^{(1)} -(h^{(1)})^TW^{(2)}h^{(2)}-...- (h^{(N-1)})^TW^{(N)}h^{(N)}
 \end{equation}
 where $W^{(i)}$ is the weight from the previous layer to the $i$th hidden layer.\\
 \\
-A desirable Deep Boltzmann Machine maximizes the likelihood of the input data. The gradient of its log likelihood is \begin{equation}
+A Deep Boltzmann Machine maximizes the likelihood of the input data. The gradient of its log likelihood is \begin{equation}
 \frac{\partial \log P(v)}{\partial W^{(i)}} = \langle h^{(i-1)}(h^{(i)})^T\rangle_{data} - \langle h^{(i-1)}(h^{(i)})^T\rangle_{model}.
 \end{equation}
-The learning uses variational learning as mentioned in the section of Deep Belief Network. More details are in pretraining and inference sections below.
 \subsection{Pretraining of Deep Boltzmann Machine}
-Because the Deep Boltzmann Machine is an undirected model, the last hidden layer receives input from only the adjacent layer below it, and the other hidden layers receives input from both direction. The visible layer receives input from only the first hidden layer. So when training Restricted Boltzmann Machines, the weights and biases need to be adjusted for better approximations. The pretraining process is as below:\\
+Because the Deep Boltzmann Machine is an undirected model, the last hidden layer receives input from the previous adjacent layer, and the other hidden layers receive inputs from both directions. So when training Restricted Boltzmann Machines, the weights and biases need to be adjusted for better approximations. The pretraining process is as below:\\
 \\
-I. Set the architecture of the model, specifically the size of each layer, \(n_0, n_1, n_2, ..., n_N\). $n_0$ is the input dimension and input forms a visible layer with index 0.\\
+I. Set the architecture of the model, specifically the size of each layer, \(n_0, n_1, n_2, ..., n_N\). $n_0$ is the dimension of the training data.\\
 \\
 II. Pretrain the first hidden layer:\\
-Train an RBM, in which the weight from the visible layer to the hidden layer is $2W_1$ and the weight from the hidden layer to the visible layer is $W_1^{T}$. $W_1$ is the weight of the first hidden layer of DBM.\\
+Train an RBM, in which the weight from the visible layer $v$ to the hidden layer $h_1$ is $2W_1$ and the weight from $h_1$ to $v$ is $W_1^{T}$. $W_1$ is the weight of the first DBM hidden layer.\\
 \\
 III. Pretrain intermediate hidden layers:\\
-for $i = 1\text{ to }N - 1$:\\
+for $i = 2\text{ to }N - 1$:\\
 \indent 1. Train an RBM with the following settings:\\
-\begin{gather}
+\begin{gather*}
 n_h^{(i)}=n_i\\
 n_v^{(i)}=n_{i-1}\\
 d_i=a_{i-1}\\
-\end{gather}
+\end{gather*}
 \indent where
-\begin{gather}
+\begin{gather*}
 n_h^{(i)} = \text{Dimension of hidden layer of RBM trained for layer }i,\\
 n_v^{(i)} = \text{Dimension of visible layer of RBM trained for layer }i,\\
 d_i = \text{Input of RBM trained for layer i},\\
-a_{i-1} = \text{Activations of the }(i-1)\text{th layer of autoencoder}.
-\end{gather}
-\indent 2. Set \begin{gather}
+a_{i-1} = \text{Activations of the }(i-1)\text{th layer}.
+\end{gather*}
+\indent 2. Set \begin{gather*}
 W_i = W_{RBM} / 2,\\
 b_i = b^h_{RBM} / 2,\\
 a_i = a_{RBM}.
-\end{gather}
-\indent The weight of this RBM is double the weight of the $i$th hidden layer of DBM, the hidden bias of this RBM is double the bias of the $i$th hidden layer of DBM, and $a_i$ is the activation of this RBM.\\
-end for.\\
+\end{gather*}
+\indent Weights and biases are adjusted here for better approximations.\\
 \\
 IV. Pretrain the last hidden layer:\\
-Train an RBM, in which the weight from the visible layer to the hidden layer is $W_N$ and the weight from the hidden layer to the visible layer is $2W_N^{T}$. $W_N$ is the weight of the last hidden layer of DBM.
+Train an RBM, in which the weight from the hidden layer $h_{N-1}$ to the hidden layer $h_N$ is $W_N$ and the weight from $h_{N}$ to $h_{N-1}$ is $2W_N^{T}$. $W_N$ is the weight of the last hidden layer of DBM.
 \subsection{Mean Field Inference}
-The mean field inference of the Deep Boltzmann Machine involves an iterative update of the approximations $Q$. Figure 7.2 shows the algorithm of mean field inference, which is from [5].
+The mean field inference of the Deep Boltzmann Machine involves iterative updates of the approximations $Q$. It is performed after pretraining. The algorithm is as below:\\
+\\
+\noindent \textbf{Algorithm} Mean Field Inference\\
+ Initialize $M$ samples with the pretrained model. Each sample consists of states of the visible layer and all hidden layers.\\
+\noindent \textbf{for} $t = 0$ to $T$ (number of iterations) \textbf{do}\\
+\indent //\textbf{Variational Inference:}\\
+\indent \textbf{for} each data sample \textbf{v}$_n,n=1$ to $n_0$ \textbf{do}\\
+\indent\indent Perform a bottom-up pass with 
+\begin{gather*}
+\nu_j^1 = \sigma\Big( \sum_{i=1}^{n_0} 2W_{ij}^1v_i \Big),\\
+\nu_k^2 = \sigma\Big( \sum_{j=1}^{n_1} 2W_{jk}^2\nu_j^1\Big),\\
+\cdots\\
+\nu_p^{N-1} = \sigma\Big( \sum_{l=1}^{n_{N-2}} 2W_{lp}^{N-1}\nu_l^{N-2} \Big),\\
+\nu_q^{N} = \sigma\Big( \sum_{p=1}^{n_{N-1}} W_{pq}^{N}\nu_p^{N-1} \Big),
+\end{gather*}
+\indent\indent where $\{W_{ij}\}$ is the set of pretrained weights.\\
+\indent\indent Set $\mathbold{\mu}=\mathbold{\nu}$ and run the mean-field updates:
+\begin{gather*}
+\end{gather*}
+(Eqs. 4,5,6) for $K$ steps to obtain the mean-field approximate posterior $Q^{MF}$. \\
+Adjust the recognition parameters by taking a single gradient step in Eq.11:\\
+$\theta^{rec}_{t+1} = \theta^{rec}_{t} + \alpha_t
+\frac{\partial \text{KL}(Q^{MF}||Q^{rec})}{\partial \theta^{rec}}$\\
+Set $\mathbold{\mu}_n = \mathbold{\mu}$. \par
+\textbf{end for}\\
+\\
+\indent //\textbf{Stochastic Approximation:}\\
+\indent \textbf{for} each sample $m=1$ to $M$ \textbf{do}\par
+Sample $(\tilde{v}_{t+1,m},\tilde{h}_{t+1,m})$ given $(\tilde{v}_{t,m},\tilde{h}_{t,m})$ by running a Gibbs sampler.\par 
+\textbf{end for}\\
+\\
+\indent //Parameter Update:\\
+\indent $W^1_{t+1} = W^1_t + \alpha_t\Big(\frac{1}{N}\sum_{n=1}^N \mathbf{v}_n(\mathbold{\mu}_n^1)^T- \frac{1}{M}\sum_{m=1}^M \tilde{\mathbf{v}}_{t+1,m}(\tilde{\mathbf{h}}_{t+1,m}^1)^T\Big)$\\
+\indent $W^2_{t+1} = W^2_t + \alpha_t\Big(\frac{1}{N}\sum_{n=1}^N \mathbold{\mu}_n^1(\mathbold{\mu}_n^2)^T- \frac{1}{M}\sum_{m=1}^M \tilde{\mathbf{h}}_{t+1,m}^1(\tilde{\mathbf{h}}_{t+1,m}^2)^T\Big)$\\
+\indent $W^3_{t+1} = W^3_t + \alpha_t\Big(\frac{1}{N}\sum_{n=1}^N \mathbold{\mu}_n^2(\mathbold{\mu}_n^3)^T- \frac{1}{M}\sum_{m=1}^M \tilde{\mathbf{h}}_{t+1,m}^2(\tilde{\mathbf{h}}_{t+1,m}^3)^T\Big)$\\
+\indent Decrease $\alpha_t$.\\
+\noindent \textbf{end for}
+
+\begin{equation}
+\mu_j^1 \leftarrow \sigma\Big(\sum_{i=1}^D W_{ij}^1v_i + \sum_{k=1}^{F_2}W_{jk}^2\mu_k^2 \Big),
+\end{equation}
+
+\begin{equation}
+\nu_j^1 = \sigma\Big( \sum_{i=1}^D 2R_{ij}^1v_i \Big),
+\end{equation}
+\\
+Figure 7.2 shows the algorithm of mean field inference, which is from [5].
 \begin{figure*}[!t]
 \centering
 \subfigure {\includegraphics[height=3.5in]{mf1.png}}
@@ -743,7 +788,7 @@ The mean field inference of the Deep Boltzmann Machine involves an iterative upd
 \caption{Mean Field Inference of Deep Boltzmann Machine}
 \label{fig5}
 \end{figure*}
-In sampling step, randomly initialize $M$ sample particles. Each particle is a set of states of the model. To facilitate computation, $M$ may be set as the number of batches. This is done by generating a random input, of which each element is a sample of uniform distribution. Then the random input is used to compute activations of each hidden layer. Also use the states of the first hidden layer to compute states of the visible layer. The states of all layers form a sample particle. This process uses the weight acquired in the pretrainig step.
+In sampling step, randomly initialize $M$ sample particles. Each particle is a set of states of the model. To facilitate computation, $M$ may be set as the number of batches. This is done by generating a random input, of which each element is a sample of uniform distribution. Then the random input is used to compute activations of each hidden layer. Also use the states of the first hidden layer to compute states of the visible layer. The states of all layers form a sample particle. This process uses the weight acquired in the pretrainig step.\\
 \subsection{Implementation of Deep Boltzmann Machine}
 The implementation of DBM is in the header file dbm.hpp.\\
 \\
