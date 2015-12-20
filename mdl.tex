@@ -475,11 +475,11 @@ where $P(h_{N-1},h_N, y)$ could be regarded as the distribution over a RBM which
 In pretraining of the Deep Belief Network, pretrained RBMs are stacked like in pretraining the Deep Neural Network. However, since this is not a feedforward neural network. A different fine tuning method called Up-Down algorithm is used.
 \subsection{Training of Deep Belief Network}
 In training, the Deep Belief Network should maximize the likelihood of the training data. With the concavity of the logarithm function, the lower bound of the log likelihood of the training data $x$ could be found:\begin{equation}\label{eq:10}
-\log P(x)=\log\left(\sum_h Q(h|x)\frac{P(x,h)}{Q(h|x)}\right)\geq \sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)}
+\log P(x)=\log\left(\sum_h Q(h|x)\frac{P(x,h)}{Q(h|x)}\right)\geq \sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)},
 \end{equation}
 and we have
 \begin{equation}\label{eq:8}
-\sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)}= \sum_h Q(h|x)\log P(x, h)-\sum_h Q(h|x)\log Q(h|x)
+\sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)}= \sum_h Q(h|x)\log P(x, h)-\sum_h Q(h|x)\log Q(h|x),
 \end{equation}
 where $Q(h|x)$ is an approximation to the true probability $P(h|x)$ of the model.\\
 \\
@@ -489,7 +489,7 @@ If $Q(h|x) = P(h|x)$, plug it in the right-hand side of \eqref{eq:8} we have \be
 & = \sum_h P(h|x)\log P(x) =\log P(x)\sum_h P(h|x) =\log P(x).
 \end{split}
 \end{equation}
-Combine equation \eqref{eq:11}, \eqref{eq:8}  with \eqref{eq:10}, we could find that when $Q(h|x) = P(h|x)$, the lower bound is tight.\\
+Combine equation \eqref{eq:11}, \eqref{eq:8} with \eqref{eq:10}, we could find that when $Q(h|x) = P(h|x)$, the lower bound is tight.\\
 \\
 Moreover, the more different $Q(h|x)$ is from $P(h|x)$, the less tight the bound is. The lower bound of \eqref{eq:10} could be expressed as \begin{equation}
 \log P(x) - KL(Q(h|x)||P(h|x)).
@@ -498,7 +498,7 @@ Less difference between the approximation $Q(h|x)$ and the true posterior $P(h|x
 Q(h|x)=\prod_{i=1}^{n_h} Q(h_i|x).
 \end{equation}
 \\
-Consequently, in training the goal is to find approximation $Q(h|x)$ with high accuracy   and at the same time maximizes the bound. This could be done by stacking pretrained RBMs. The lower bound of \eqref{eq:10} could be factorized as
+Consequently, in training the goal is to find approximation $Q(h|x)$ with high accuracy and at the same time maximizes the bound. This could be done by stacking pretrained RBMs. The lower bound of \eqref{eq:10} could be factorized as
 \begin{equation}\label{eq:9}
 \sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)}= \sum_h Q(h|x)(\log P(x|h) + \log P(h))-\sum_h Q(h|x)\log Q(h|x)
 \end{equation}
@@ -510,7 +510,7 @@ P(h) = \sum_{h^{(2)}}P(h, h^{(2)}),
 \end{equation}
 where $h^{(2)}$ is computed by the second pretrained RBM. The second RBM takes sample constructed from $Q(h|x)$ as input. But it could be trained independently since its parameters do not depend on the parameters of the first pretrained RBM. This is why greedy layer-wise pretraining works.\\
 \\
-After pretraining is done, use Up-Down algorithm as fine tuning, which is a combination of the training process of RBM, and an algorithm called Wake-Sleep algorithm which is for learning of the Sigmoid Belief Network.
+After pretraining is done, use Up-Down algorithm as fine tuning, which is a combination of the training of RBM, and an algorithm called Wake-Sleep algorithm which is for learning of the Sigmoid Belief Network.
 \subsection{Classification of Deep Belief Network}
 In training the Restricted Boltzmann Machine, dropout is used to alleviate overfitting. This method reminds us that RBM has the ability to predict missing values.\\
 \\
