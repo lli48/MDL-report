@@ -395,7 +395,7 @@ Classification with Deep Neural Network is similar to RBM. The last layer, which
 \subsection{Fine Tuning of Deep Neural Network}
 As mentioned in the above section, fine tuning uses backpropagation, which is a common learning algorithm used in neural networks. Unlike one-step backpropagation used in training classifier of RBM, this one is a thorough one going through each layer. Backprogation algorithm is:\\
 \\
-I. Perform a pass through all layers of the network, computing total input of each unit $\{z^{(1)},..., z^{(N)}\}$ and activations $\{a^{(1)},..., a^{(N)}\}$ of each layer. $a^{(i)}$ is the row vector that presents the activation of layer $i$. \\
+I. Perform a pass through all layers of the network, computing total input of each layer $\{z^{(1)},..., z^{(N)}\}$ and activations $\{a^{(1)},..., a^{(N)}\}$ of each layer. $a^{(i)}$ is the row vector that presents the activation of layer $i$. \\
 \\
 II. For the last layer, compute $\delta_i^{(N)}$ as
 \begin{equation}
