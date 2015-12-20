@@ -448,12 +448,12 @@ Construction of the Deep Neural Network is stacking multiple RBMs in the pretrai
 \includegraphics[height=2.8in]{DBN.png}
 \caption{Deep Belief Network} \label{fig:side:a}
 \end{figure}
-A Deep Belief Network (DBN) is a hybrid of a Restricted Boltzmann Machine and a Sigmoid Belief Network. A desirable Deep Belief Network should maximize the likelihood $P(x)$ of the input $x$. Figure 5.1 shows a DBN.\\
+A Deep Belief Network (DBN) is a hybrid of a Restricted Boltzmann Machine and a Sigmoid Belief Network. A Deep Belief Network maximizes the likelihood $P(x)$ of the input $x$. Figure 5.1 shows a DBN.\\
 \\
-The distribution over the visible layer (input data) and hidden layers is\begin{equation}
+For a Deep Belief Network with $N$ hidden layers, the distribution over the visible layer (input data) and hidden layers is\begin{equation}
 P(v, h_1, ..., h_N)  = P(v| h_1) \times\left(\prod_{k=1}^{N-2}  P(h_k| h_{k+1}))\right)\times P(h_{N-1},h_N).
 \end{equation}
-To prove this, express the distribution using chain rule:\begin{equation}
+To prove this, express the distribution with chain rule:\begin{equation}
 P(v, h_1, ..., h_N)  = P(v| h_1, ..., h_N) \times\left(\prod_{k=1}^{N-2}  P(h_k| h_{k+1},..., h_{N}))\right)\times P(h_{N-1},h_N).
 \end{equation}
 And in the belief network, each node is independent of its ancestors given its parent. So these hold:\begin{gather}
@@ -465,22 +465,22 @@ P(v, h_1, ..., h_N)  = P(v| h_1) \times\left(\prod_{k=1}^{N-2}  P(h_k| h_{k+1}))
 \end{equation}
 where $P(v| h_1) \times\left(\prod_{k=1}^{N-2}  P(h_k| h_{k+1}))\right)$ is the distribution over the Sigmoid Belief Network and $P(h_{N-1},h_N)$ is the distribution over Restricted Boltzmann Machine.\\
 \\
-For classification with label set $Y$, the distribution over the Deep Belief Network is
+For classification there should be a layer $y$ on top of the last hidden layer. With  layer $y$ that represents prediction distribution, the distribution over the Deep Belief Network is
 \begin{equation}
 P(v, h_1, ..., h_N, y)  = P(v| h_1) \times\left(\prod_{k=1}^{N-2}  P(h_k| h_{k+1}))\right)\times P(h_{N-1},h_N, y).
 \end{equation}
-where $P(h_{N-1},h_N, y)$ could be regarded as the distribution over a RBM which has labels $y$ and the states $h_{N-1}$ as the input.\\
+where $P(h_{N-1},h_N, y)$ could be regarded as the distribution over a RBM which has labels $y$ and the state $h_{N-1}$ as the input.\\
 \\
-The training of the Deep Belief Network is to stack pretrained RBMs like in pretraining the Deep Neural Network. However, since this is not a feedforward neural network. A different fine tuning method called Up-Down algorithm is used.
+In pretraining of the Deep Belief Network, pretrained RBMs are stacked like in pretraining the Deep Neural Network. However, since this is not a feedforward neural network. A different fine tuning method called Up-Down algorithm is used.
 \subsection{Training of Deep Belief Network}
-Training a Deep Belief Network is to find model parameters that maximize the likelihood of the input data. Because of the concavity of the logarithm function, the lower bound of the log likelihood of the input data $x$ could be found:\begin{equation}
+Training a Deep Belief Network is to find model parameters that maximize the likelihood of the training data. Because of the concavity of the logarithm function, the lower bound of the log likelihood of the training data $x$ could be found:\begin{equation}
 \log P(x)=\log\left(\sum_h Q(h|x)\frac{P(x,h)}{Q(h|x)}\right)\geq \sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)}
 \end{equation}
 and 
-\begin{equation}
-\sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)}= \sum_h Q(h|x)\log(P(h|x) + P(x))-\sum_h Q(h|x)\log Q(h|x)
+\begin{equation}\label{eq:8}
+\sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)}= \sum_h Q(h|x)\log(P(x|h) + P(h))-\sum_h Q(h|x)\log Q(h|x)
 \end{equation}
-where $Q(h|x)$ is an approximation to the true probability $P(h|x)$ of the model. If the weight between the first hidden layer and the visible layer and the biases of these two layers are found, it is clear that in the above equation only $P(h)$ is not fixed, and could be computed as \begin{equation}
+where $Q(h|x)$ is an approximation to the true probability $P(h|x)$ of the model. If the weights and biases of the first hidden layer and the visible layer are given, it is clear that in the right-hand side of equation \eqref{eq:8}, only $P(h)$ is not fixed, and could be computed as \begin{equation}
 P(h) = \sum_{h^{(2)}}P(h, h^{(2)})
 \end{equation}
 which is based on the weight between the first hidden layer and the second hidden layer. This is why greedy layer-wise pretraining works. Furthermore, \begin{equation}
