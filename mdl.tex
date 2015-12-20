@@ -737,10 +737,10 @@ Train an RBM, in which the weight from the hidden layer $h_{N-1}$ to the hidden 
 The mean field inference of the Deep Boltzmann Machine involves iterative updates of the approximations $Q$. It is performed after pretraining. The algorithm is as below:\\
 \\
 \noindent \textbf{Algorithm} Mean Field Inference\\
- Initialize $M$ samples with the pretrained model. Each sample consists of states of the visible layer and all hidden layers.\\
+Initialize $M$ samples $\{\tilde{v}_{0,1},\tilde{h}_{0,1}\}$,...,$\{\tilde{v}_{0,M},\tilde{h}_{0,M}\}$with the pretrained model. Each sample consists of states of the visible layer and all the hidden layers.\\
 \noindent \textbf{for} $t = 0$ to $T$ (number of iterations) \textbf{do}\\
-\indent //\textbf{Variational Inference:}\\
-\indent \textbf{for} each data sample \textbf{v}$_n,n=1$ to $n_0$ \textbf{do}\\
+\indent 1. \textbf{Variational Inference:}\\
+\indent \textbf{for} each data sample \textbf{v}$_n,n=1$ to $D$ \textbf{do}\\
 \indent\indent Perform a bottom-up pass with 
 \begin{gather*}
 \nu_j^1 = \sigma\Big( \sum_{i=1}^{n_0} 2W_{ij}^1v_i \Big),\\
@@ -750,45 +750,29 @@ The mean field inference of the Deep Boltzmann Machine involves iterative update
 \nu_q^{N} = \sigma\Big( \sum_{p=1}^{n_{N-1}} W_{pq}^{N}\nu_p^{N-1} \Big),
 \end{gather*}
 \indent\indent where $\{W_{ij}\}$ is the set of pretrained weights.\\
-\indent\indent Set $\mathbold{\mu}=\mathbold{\nu}$ and run the mean-field updates:
+\indent\indent Set $\mathbold{\mu}=\mathbold{\nu}$ and run the mean-field updates with:
 \begin{gather*}
+\mu_j^1 \leftarrow \sigma\Big(\sum_{i=1}^{n_0} W_{ij}^1v_i + \sum_{k=1}^{n_2}W_{jk}^2\mu_k^2 \Big),\\
+\cdots\\
+\mu_j^{N-1} \leftarrow \sigma\Big(\sum_{i=1}^{n_{N-2}} W_{ij}^{N-1}\mu_i^{N-2} + \sum_{k=1}^{n_N}W_{jk}^N\mu_k^N \Big),\\
+\mu_j^{N} \leftarrow \sigma\Big(\sum_{i=1}^{n_{N-1}} W_{ij}^{N}\mu_i^{N-1} \Big).
 \end{gather*}
-(Eqs. 4,5,6) for $K$ steps to obtain the mean-field approximate posterior $Q^{MF}$. \\
-Adjust the recognition parameters by taking a single gradient step in Eq.11:\\
-$\theta^{rec}_{t+1} = \theta^{rec}_{t} + \alpha_t
-\frac{\partial \text{KL}(Q^{MF}||Q^{rec})}{\partial \theta^{rec}}$\\
-Set $\mathbold{\mu}_n = \mathbold{\mu}$. \par
+\indent\indent Set $\mathbold{\mu}_n = \mathbold{\mu}$. \par
 \textbf{end for}\\
 \\
-\indent //\textbf{Stochastic Approximation:}\\
+\indent 2. \textbf{Stochastic Approximation:}\\
 \indent \textbf{for} each sample $m=1$ to $M$ \textbf{do}\par
-Sample $(\tilde{v}_{t+1,m},\tilde{h}_{t+1,m})$ given $(\tilde{v}_{t,m},\tilde{h}_{t,m})$ by running a Gibbs sampler.\par 
+\indent\indent Running one step Gibbs sampling. Get $(\tilde{v}_{t+1,m},\tilde{h}_{t+1,m})$ from $(\tilde{v}_{t,m},\tilde{h}_{t,m})$\\
 \textbf{end for}\\
 \\
-\indent //Parameter Update:\\
-\indent $W^1_{t+1} = W^1_t + \alpha_t\Big(\frac{1}{N}\sum_{n=1}^N \mathbf{v}_n(\mathbold{\mu}_n^1)^T- \frac{1}{M}\sum_{m=1}^M \tilde{\mathbf{v}}_{t+1,m}(\tilde{\mathbf{h}}_{t+1,m}^1)^T\Big)$\\
-\indent $W^2_{t+1} = W^2_t + \alpha_t\Big(\frac{1}{N}\sum_{n=1}^N \mathbold{\mu}_n^1(\mathbold{\mu}_n^2)^T- \frac{1}{M}\sum_{m=1}^M \tilde{\mathbf{h}}_{t+1,m}^1(\tilde{\mathbf{h}}_{t+1,m}^2)^T\Big)$\\
-\indent $W^3_{t+1} = W^3_t + \alpha_t\Big(\frac{1}{N}\sum_{n=1}^N \mathbold{\mu}_n^2(\mathbold{\mu}_n^3)^T- \frac{1}{M}\sum_{m=1}^M \tilde{\mathbf{h}}_{t+1,m}^2(\tilde{\mathbf{h}}_{t+1,m}^3)^T\Big)$\\
+\indent 3. Parameter Update:\\
+\indent $W^1_{t+1} = W^1_t + \alpha_t\Big(\frac{1}{D}\sum_{n=1}^D \mathbf{v}_n(\mathbold{\mu}_n^1)^T- \frac{1}{M}\sum_{m=1}^M \tilde{\mathbf{v}}_{t+1,m}(\tilde{\mathbf{h}}_{t+1,m}^1)^T\Big)$\\
+\indent $W^2_{t+1} = W^2_t + \alpha_t\Big(\frac{1}{D}\sum_{n=1}^D \mathbold{\mu}_n^1(\mathbold{\mu}_n^2)^T- \frac{1}{M}\sum_{m=1}^M \tilde{\mathbf{h}}_{t+1,m}^1(\tilde{\mathbf{h}}_{t+1,m}^2)^T\Big)$\\
+\indent $W^3_{t+1} = W^3_t + \alpha_t\Big(\frac{1}{D}\sum_{n=1}^D \mathbold{\mu}_n^2(\mathbold{\mu}_n^3)^T- \frac{1}{M}\sum_{m=1}^M \tilde{\mathbf{h}}_{t+1,m}^2(\tilde{\mathbf{h}}_{t+1,m}^3)^T\Big)$\\
 \indent Decrease $\alpha_t$.\\
-\noindent \textbf{end for}
-
-\begin{equation}
-\mu_j^1 \leftarrow \sigma\Big(\sum_{i=1}^D W_{ij}^1v_i + \sum_{k=1}^{F_2}W_{jk}^2\mu_k^2 \Big),
-\end{equation}
-
-\begin{equation}
-\nu_j^1 = \sigma\Big( \sum_{i=1}^D 2R_{ij}^1v_i \Big),
-\end{equation}
+\noindent \textbf{end for}\\
 \\
-Figure 7.2 shows the algorithm of mean field inference, which is from [5].
-\begin{figure*}[!t]
-\centering
-\subfigure {\includegraphics[height=3.5in]{mf1.png}}
-\subfigure {\includegraphics[height=3in]{mf2.png}}
-\caption{Mean Field Inference of Deep Boltzmann Machine}
-\label{fig5}
-\end{figure*}
-In sampling step, randomly initialize $M$ sample particles. Each particle is a set of states of the model. To facilitate computation, $M$ may be set as the number of batches. This is done by generating a random input, of which each element is a sample of uniform distribution. Then the random input is used to compute activations of each hidden layer. Also use the states of the first hidden layer to compute states of the visible layer. The states of all layers form a sample particle. This process uses the weight acquired in the pretrainig step.\\
+To facilitate computation, $M$ may be chosen as the number of batches.\\
 \subsection{Implementation of Deep Boltzmann Machine}
 The implementation of DBM is in the header file dbm.hpp.\\
 \\
@@ -802,10 +786,12 @@ III. void \textbf{train}(dataInBatch $\&$Data, dataInBatch $\&$label, size$\_$t 
 This method trains DBM as classifier.\\
 \\
 IV. void \textbf{fineTuning}(dataInBatch $\&$data, dataInBatch $\&$label)\\
-Fine tune DBM using mean field inference.\\
+Fine tuning uses mean field inference.\\
 \\
 V. void \textbf{classify}(dataInBatch $\&$data, dataInBatch $\&$label)\\
-Classify the data with DBM. label set is used to compute accuracy.
+Classify the data with DBM. Label set is used to compute classification error rate.
+\subsection{Summary}
+In DBM, each layer receives input from all its adjacent layers. Its training is more complicated than other models in directed graphs.
 \clearpage
 \section{Multimodal Learning Model}
 \subsection{Deep Canonical Correlation Analysis}
@@ -825,8 +811,8 @@ Centering the data will not change the result but could facilitate computation:\
 x=X-I_XI_X^TX/n_X,\\
 y=Y-I_YI_Y^TY/n_Y.
 \end{gather}
-where $I_X$ is an $n_X \times 1$ vector of ones, $n_X$ is the number of rows of $X$, and $n_Y$ is the number of rows of $Y$. And the covariance matrix of centered data like $x$ is \begin{equation}
-Cov(x,x) = Var(x)=x^Tx/n_x.
+where $I_X$ is an $n_X \times 1$ vector of ones, $n_X$ is the number of rows of $X$, and $n_Y$ is the number of rows of $Y$. And the covariance matrix of centered data $x$ is \begin{equation}
+Cov(x,x) = Var(x)=x^Tx/(n_x - 1).
 \end{equation}
 The solution to this problem suggests that $a$ and $b$ are respectively the eigenvectors of the following matrices\begin{gather}
 Cov(x,x) ^{-1} Cov(x,y) Cov(y, y) ^{-1} Cov(y, x),\\
@@ -880,7 +866,7 @@ It is possible to make lower-dimension representation of two modals by building 
 \\
 Another option is to build a Markov Random Field multimodal learning model by combining two Deep Boltzmann Machines. Figure 8.3 shows such a model. This model is constructed by first build two DBMs, each is trained on data of one modal. Then Train an RBM on top of these two DBMs.\\
 \\
-Prediction of one data from one modal could be done by first training a Bimodal Autoencoder in Figure 8.4(a) and then use the modal prediction network in Figure(b) to predict data from two modals. It would be necessary to add noise possibly in data corruption when training the Bimodal Autoencoder so that it has more power in reconstruction.
+Prediction of data from one modal given data from the other modal could be done by first training a Bimodal Autoencoder in Figure 8.4(a) and then use the modal prediction network in Figure(b) to predict data from two modals. It would be necessary to add noise to corrupt data when training the Bimodal Autoencoder so that it has more power in reconstruction.
  \begin{figure*}[!t]
 \centering
 \subfigure[Bimodal Autoencoder] {\includegraphics[height=1.8in]{aemodal.png}}
@@ -908,7 +894,7 @@ In CIFAR-10 data set, each sample consists of a number indicating its class and 
 \\
 void \textbf{imread$\_$cifar}(Mat $\&$trainingData, Mat $\&$trainingLabel, Mat $\&$testingData, Mat $\&$testingLabel)\\
 \\
-Each row of the read OpenCV matrices consists of the label of the data of a sample.
+Each row of the read OpenCV matrices consists of the label and the data of a sample.
 
 \subsubsection{XRMB}
 As stated in its explanation, Wisconsin X-ray Microbeam Database (XRMB) data used in "Deep Canonical Correlation Analysis" is processed by Galen Andrew, Raman Arora, etc.The dimension of the MFCC data is 273 and the dimension of the XRMB data is 112. There are label files of fold 0 that provides the phone labels. The data is stored in double-precision format.\\
@@ -921,7 +907,7 @@ indexLabel \textbf{imread$\_$XRMB$\_$label}(const char* path)\\
 \\
 When reading MFCC files, inputDim = 273. When reading XRMB files, inputDim = 112. The label is between 0 (inclusive) and 39 (inclusive). The data is stored sample by sample. 
 \subsubsection{AvLetters}
-AvLetters is the data set recording audio data and video data of different people uttering letters. The dimension of the audio data is 23 and the dimension of the video data is 60$\times$80. The data is stored in single-precision big-endian format. Each file is the data of a person uttering a certain letter. For instance, the file A1$\_$Anya.mfcc contains the audio data of the person named Anya uttering letter "A". \\
+AvLetters is the data set recording audio data and video data of different people uttering letters. The dimension of the audio data is 26 and the dimension of the video data is 60$\times$80. The data is stored in single-precision big-endian format. Each file is the data of a person uttering a certain letter. For instance, the file A1$\_$Anya.mfcc contains the audio data of the person named Anya uttering letter "A". \\
 \\
 The following function in the header file readAvLetters.hpp reads audio data:\\
 \\
@@ -929,9 +915,9 @@ cv::Mat \textbf{imread$\_$avletters$\_$mfcc}(const char* path)\\
 \\
 The output is an OpenCV matrix, of which each row contains data of a sample. The original video data is in MATLAB file format. The header file readMat.hpp contains the function\\
 \\
-cv::Mat \textbf{matRead}(const char* fileName, const char* variableName, const char* saveName)\\
+cv::Mat \textbf{matRead}(const char* fileName, const char* variableName, const char* saveName).\\
 \\
-to read the mat file and at the same time save it as binary file named as the argument "saveName". This header file uses the MATLAB/c++ interface provided by MATLAB and requires an environment setting, which is contained as comments in the header file. There are some problems running the libraries in this interface together with OpenCV. So use this function to transform all MATLAB files to binary files before training models and then read the transformed binary files would be better. The header file readDat.hpp provide the function to read the transformed binary files:\\
+It reads the mat file and at the same time saves it as binary file named as the argument "saveName". This header file uses the MATLAB/c++ interface provided by MATLAB and requires an environment setting, which is contained as comments in the header file. There are some problems running the libraries in this interface together with OpenCV. So use this function to transform all MATLAB files to binary files before training models and then read the transformed binary files. The header file readDat.hpp provide the function to read the transformed binary files:\\
 \\
 cv::Mat \textbf{readBinary}(const char* file, int rowSize, int colSize)\\
 \\
@@ -940,16 +926,16 @@ The output is an OpenCV matrix, of which each row contains data of a sample.
 Header file processData.hpp stores functions processing data.\\
 \\
 data \textbf{oneOfK}(indexLabel l, int labelDim)\\
-Transfer index label to one of k expression.\\
+Transfer index label to one-of-k expression.\\
 \\
 dataInBatch \textbf{corruptImage}(dataInBatch input, double denoiseRate)\\
 Give corrupted data in batches.\\
 \\
 std::vector$<$dataInBatch$>$ \textbf{dataProcess}(dataCollection$\&$ reading, int numBatch)\\
-Transfer reading of a data set into data batches.\\
+Build data batches.\\
 \\
 dataCollection \textbf{shuffleByRow}(dataCollection$\&$ m)\\
-Shuffle the read data\\
+Shuffle the data\\
 \\
 cv::Mat \textbf{denoiseMask}(size$\_$t rowSize, size$\_$t colSize, double rate)\\
 Generate a mask to corrupt data
@@ -958,13 +944,9 @@ Generate a mask to corrupt data
 \\
 \textbf{cca.hpp} includes functions computing CCA and KCCA.\\
 \\
-\textbf{upDown.hpp} includes fine tuning method used for DBN.\\
-\\
 \textbf{gd.hpp} includes functions for adaptive gradient descent and stochastic gradient descent, and a function to anneal the learning rate in which three types of annealing methods are provided.\\
 \\
 \textbf{inference.hpp} includes the mean field inference implementation used by DBM.\\
-\\
-\textbf{upDown.hpp} includes the up-down fine tuning algorithm implementation used by DBN.\\
 \\
 \textbf{kernel.hpp} includes multiple kernel functions used by KCCA.\\
 \\
@@ -972,23 +954,23 @@ Generate a mask to corrupt data
 \\
 \textbf{matrix.hpp} includes some OpenCV matrix manipulation functions.\\
 \\
-\textbf{loadData.hpp} contains function to test data loading by visualization.\\
+\textbf{loadData.hpp} contains functions to test data loading by visualization.\\
 \\
-\textbf{visualization.hpp} contains function of visualization.\\
+\textbf{visualization.hpp} contains functions of visualization.\\
 \subsection{Models and Running}
-Table 1 shows the header files and files contains main function to test each model. Besides these, modalPrediction.cpp contains implementation of a modal prediction model. And modalDBM.cpp contains the implementation of a multimodal learning model based on Deep Boltzmann Machines.
+Table 1 shows the header files and files that contains main functions to test each model. Besides these, modalPrediction.cpp contains implementation of a modal prediction model.
 \begin{table}[h]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
 Model & RBM & DNN & DBN & DAE/AE & DBM & DCCA\\
 \hline
-Header(.hpp) & rbm &dnn & dbn & autoencoder & dbm & dcca\\
+Header(.hpp) & rbm &dnn & dbn & autoencoder & dbm & cca\\
 \hline
 Main(.cpp) & runRBM & runDNN & runDBN & runDAE &runDBM & runDCCA \\
 \hline
 \end{tabular}
-\caption{Header files and main functions of models}
+\caption{Header files of models}
 \end{table}
 \clearpage
 \section{Performance}
