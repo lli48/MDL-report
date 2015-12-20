@@ -358,11 +358,11 @@ RBM is the foundation for several multi-layer models. It is crucial that this co
 \includegraphics[height=3.2in]{DNN.png}
 \caption{Deep Neural Network} \label{fig:side:a}
 \end{figure}
-A Deep Neural Network (DNN) is a neural network with multiple hidden layers. In neural networks, initialization of weights could greatly effect the training results. By pretraining, in which multiple Restricted Boltzmann Machines are trained to initialize parameters of each DNN layer, such dependence on weight initialization could be reduced. Also, backpropagation is a very time-consuming process. With pretraining, the epochs in bakckpropagation could be reduced to a limited number, which significantly reduces the time to train. Actually a solid performance of the model could be presented by pretraining alone. Figure 4.1 shows a DNN with two hidden layers.\\
+A Deep Neural Network (DNN) is a neural network with multiple hidden layers. In neural networks, initialization of weights could greatly effect the training results. Pretraining, in which multiple Restricted Boltzmann Machines are trained to initialize parameters of each DNN layer, provides weight initialization that saves training time. Backpropagation is a time-consuming process. With pretraining, the time consumed by bakckpropagation could be significantly reduced. Figure 4.1 shows a DNN with two hidden layers.\\
 \\
-Below shows construction of a Deep Neural Network for classification with pretraining:\\
+Below shows construction of a Deep Neural Network for classification:\\
 \\
-I. Set the architecture of the model, specifically the size of the visible layer and the hidden layers, \(n_0, n_1, n_2, ..., n_N\). $n_0$ is the input dimension and input forms a visible layer with index 0. $n_N$ equals to the number of classes in the label set.\\
+I. Set the architecture of the model, specifically the size of the visible layer and the hidden layers, \(n_0, n_1, n_2, ..., n_N\). $n_0$ is the input dimension and input forms a visible layer. $n_N$ equals to the number of classes in training data.\\
 \\
 II. Pretrain hidden layers:\\
 for $i = 1\text{ to }N $:\\
