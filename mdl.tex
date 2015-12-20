@@ -348,7 +348,7 @@ RBM classifier(500, 10, 0);\\
 classifier.singleClassifier(modelOut, trainingLabel, 6);\\
 classificationError e = classifyRBM(rbm, classifier, testingData, testingLabel, sigmoid$\_$t);\\
 \\
-MNIST dataset has 10 classes, so the classifier is of dimension 10.
+MNIST dataset has 10 classes, so the classifier layer is of dimension 10.
 \subsection{Summary}
 RBM is the foundation for several multi-layer models. It is crucial that this component is correctly implemented and fully understood. The classifier may be trained with the hidden layer at the same time. Separating these two facilitates checking problems in the implementation.
 \clearpage
