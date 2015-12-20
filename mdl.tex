@@ -270,9 +270,9 @@ A classifier based on RBM could be constructed by training a classifier layer wi
 c_i = \frac{e^{a_i}}{\sum_{k=1}^q e^{a_k}}.
 \end{equation}
 \\
-Here one-of-$K$ scheme is used to present the class distribution. If there are $K$ classes in the training data, then the label of a sample in class $i$ is expressed as a vector of length $K$ with only the $i$th element as 1, the others as 0. For instance, if the training data has 5 classes, a sample in the forth class has the label\begin{equation}
+Here one-of-$K$ scheme is used to present the class distribution. If there are $K$ classes in the training data, then the label of a sample in class $i$ is expressed as a vector of length $K$ with only the $i$th element as 1, the others as 0. For instance, if the training data has 5 classes, a sample in the forth class has the label\begin{equation*}
 \{0,0,0,1,0\}.
-\end{equation}
+\end{equation*}
 \\
 For a training set with $K$ classes, there should be $K$ neurons in the classifier layer. For each data sample, the sofxmax activation emits a vector of length $K$. The index of the maximum element in this emission is the label. The elements of the  softmax activation sum to 1 and the activation is the prediction distribution:\begin{equation}
 c_i = P\{\text{The sample is in class i}\}.
@@ -367,23 +367,23 @@ I. Set the architecture of the model, specifically the size of the visible layer
 II. Pretrain hidden layers:\\
 for $i = 1\text{ to }N $:\\
 \indent 1. Train an RBM with the following settings:\\
-\begin{gather}
+\begin{gather*}
 n_h^{(i)}=n_i\\
 n_v^{(i)}=n_{i-1}\\
 d_i=a_{i-1}\\
-\end{gather}
+\end{gather*}
 \indent where
-\begin{gather}
+\begin{gather*}
 n_h^{(i)} = \text{Dimension of hidden layer of RBM trained for layer }i,\\
 n_v^{(i)} = \text{Dimension of visible layer of RBM trained for layer }i,\\
 d_i = \text{Input of RBM trained for layer i},\\
 a_{i-1} = \text{Activations of the }(i-1)\text{th DNN layer}.
-\end{gather}
-\indent 2. Set \begin{gather}
+\end{gather*}
+\indent 2. Set \begin{gather*}
 W_i = W_{RBM},\\
 b_i = b^h_{RBM},\\
 a_i = a_{RBM}.
-\end{gather}
+\end{gather*}
 \indent RBM is used to initialize weights and biases of each DNN layer.\\
 end for.\\
 \\
@@ -488,39 +488,41 @@ If $Q(h|x) = P(h|x)$, plug it in the right-hand side of \eqref{eq:8} we have \be
 & = \sum_h P(h|x)\log P(x) =\log P(x)\sum_h P(h|x) =\log P(x).
 \end{split}
 \end{equation}
-Combine equation \eqref{eq:11}, \eqref{eq:8}  with \eqref{eq:10}, we could find that when $Q(h|x) = P(h|x)$, the lower bound is tight. Moreover, the more different $Q(h|x)$ is from $P(h|x)$, the less tight the bound is.\\
+Combine equation \eqref{eq:11}, \eqref{eq:8}  with \eqref{eq:10}, we could find that when $Q(h|x) = P(h|x)$, the lower bound is tight.\\
 \\
-Consequently, in training we want to find approximation $Q(h|x)$ with high accuracy  so that bound is maximized. This could be done by stacking pretrained RBMs. The lower bound of \eqref{eq:10} could be factorized as
+Moreover, the more different $Q(h|x)$ is from $P(h|x)$, the less tight the bound is. The lower bound of \eqref{eq:10} could be expressed as \begin{equation}
+\log P(x) - KL(Q(h|x)||P(h|x)).
+\end{equation}
+Less difference between the approximation $Q(h|x)$ and the true posterior $P(h|x)$ gives lower value of their KL divergence, thus higher bound. Unlike true posterior, the approximations could be factorized\begin{equation}
+Q(h|x)=\prod_{i=1}^{n_h} Q(h_i|x).
+\end{equation}
+\\
+Consequently, in training the goal is to find approximation $Q(h|x)$ with high accuracy   and at the same time maximizes the bound. This could be done by stacking pretrained RBMs. The lower bound of \eqref{eq:10} could be factorized as
 \begin{equation}\label{eq:9}
 \sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)}= \sum_h Q(h|x)(\log P(x|h) + \log P(h))-\sum_h Q(h|x)\log Q(h|x)
 \end{equation}
-In the right-hand side of equation \eqref{eq:9}, $Q(h|x)$ and $P(x|h)$ are given by the first trained RBM, and $P(h)$ would be given by the pretrained RBM stacked on it. \begin{equation}
-P(h) = \sum_{h^{(2)}}P(h, h^{(2)})
+In the right-hand side of equation \eqref{eq:9}, $Q(h|x)$ and $P(x|h)$ are given by the first pretrained RBM. So to maximize the lower bound is to maximize \begin{equation}
+\sum_h Q(h|x)\log P(h).
 \end{equation}
-which is based on the weight between the first hidden layer and the second hidden layer. This is why greedy layer-wise pretraining works. Furthermore, \begin{equation}
-\sum_h Q(h|x)\log(P(h|x) + P(x))-\sum_h Q(h|x)\log Q(h|x) = \log P(x) - KL(Q(h|x)||P(h|x)).
+A RBM maximizes the likelihood of the input data. So staking another pretrained RBM on top of the first hidden layer would maximize the lower bound. Moreover, \begin{equation}
+P(h) = \sum_{h^{(2)}}P(h, h^{(2)}), 
 \end{equation}
-So the learning is to maximize the lower bound of the log likelihood by minimizing the KL divergence between the true posteriors $P(h|x)$ and the approximations $Q(h|x)$. This method is called variational learning. Unlike true posteriors, the approximations could be factorized\begin{equation}
-Q(h|x)=\prod_{i=1}^{n_h} Q(h_i|x).
-\end{equation}
-The relationships between other hidden layers of the Sigmoid Belief Network are similar to this. And the weights of the pretrained RBMs are regarded as these approximations.\\
+where $h^{(2)}$ is computed by the second pretrained RBM. The second RBM takes sample constructed from $Q(h|x)$ as input. But it could be trained independently since its parameters do not depend on the parameters of the first pretrained RBM. This is why greedy layer-wise pretraining works.\\
 \\
-After pretraining is done. Use Up-Down algorithm as fine tuning, which is a combination of the training process of RBM, and an algorithm called Wake-Sleep algorithm, which is for learning of the Sigmoid Belief Network.
+After pretraining is done, use Up-Down algorithm as fine tuning, which is a combination of the training process of RBM, and an algorithm called Wake-Sleep algorithm which is for learning of the Sigmoid Belief Network.
 \subsection{Classification of Deep Belief Network}
-In training the Restricted Boltzmann Machine, dropout is used to alleviate overfitting. This method reminds us that RBM could have the ability to predict missing values by adding noise in the training process. The Denoising Autoencoder works similarly.\\
+In training the Restricted Boltzmann Machine, dropout is used to alleviate overfitting. This method reminds us that RBM has the ability to predict missing values.\\
 \\
-After training the model, given the testing data, it should be able to compute the conditional probability as the prediction distribution. In training, $Q(h_{k+1}|h_k)$, the approximation to $P(h_{k+1}|h_k)$,  has been established as the activation of the hidden layer of a pretrained RBM which has $h_{k+1}$ as its hidden layer and $h_k$ as its visible layer. For a DBN that has $N$ hidden layers, by using this approximation the states of the $(N-1)$th hidden layer could be computed.\\
+In a trained deep belief network, each approximation $Q(h_{k+1}|h_k)$ could be computed based on states $h_k$ and model parameters. In a deep belief network with classifier, the top RBM takes labels and hidden layer $h_{N-1}$ to compute states of the last hidden layer $h_N$, which is illustrated in Figure 5.2. For better prediction performance, when training the top RBM, dropout is used.\\
 \\
-In a DBN that has been trained as a classifier. The prediction units, the $(N-1)$th and the $N$th hidden layer forms a RBM which has prediction units and the $(N-1)$th hidden layer as the RBM visible layer and the $N$th hidden layer as the RBM hidden layer. But only states of the $(N-1)$th hidden layer, which is a part of the RBM visible layer, has been directly computed. The derivation of prediction distribution is based on the ability of predicting missing values of RBM. So it is computed by going one step from th $(N-1)$th hidden layer to the $N$th hidden layer, setting values of the missing RBM visible units, which are prediction distribution units, as 0, and then going one more step from the $N$th hidden layer to the $(N-1)$th hidden layer and the distribution units. This transformation is illustrated in Figure 5.2.\\
-\\
-If in pretraining the RBM between the $N$th and the $(N-1)$th hidden layer the dropout is used, the last pretrained RBM would be more capable of predicting missing distribution units.
+Suppose $l$ is the set of units that represent prediction distribution. In classification, fill $l$ with zeros and compute approximation $Q(h_N|l, h_{N-1})$. Then use the states $h_N$ sampled from $Q(h_N|l, h_{N-1})$ to compute prediction distribution $l$ by $P(l, h_{N-1}| h_N)$.
 \begin{figure}[h]
 \centering
 \includegraphics[height=5.0in]{DBNclass.png}
-\caption{Classification of DBN} \label{fig:side:a}
+\caption{Top RBM of DBN with classifier} \label{fig:side:a}
 \end{figure}
 \subsection{Implementation of Deep Belief Network}
-The implementation of Deep Belief Network is in the header file dbn.hpp. It uses a vector of objects of class RBMlayer to store structure information. Here is a selected list of methods of class dnn:\\
+The implementation of Deep Belief Network is in the header file dbn.hpp. It uses class RBMlayer to store architecture information. Here is a selected list of methods of class dnn:\\
 \\
 I. void \textbf{addLayer}(RBMlayer $\&$l)\\
 Add a layer to the current model. This object of class RBMlayer should store information of layer size, weight, bias, etc. It could also be modified after added to  the model.\\
@@ -529,18 +531,18 @@ II. void \textbf{setLayer}(std::vector$<$size$\_$t$>$ rbmSize)\\
 Object of class dnn could automatically initialize random weights and biases of each layer by inputting a vector of layer sizes.\\
 \\
 III. void \textbf{train}(dataInBatch $\&$trainingData, size$\_$t rbmEpoch, LossType l = MSE, ActivationType a = sigmoid$\_$t)\\
-This method trains all the layers without classifier. The structure of dbn should be initialized before calling this method. \\
+This method trains a dbn without classifier. The architecture of dbn should be initialized before calling this method. \\
 \\
-IV. void \textbf{trainWithClassifier}(dataInBatch $\&$trainingData, dataInBatch $\&$trainingLabel, size$\_$t rbmEpoch, LossType l = MSE, ActivationType a = sigmoid$\_$t)\\
-This method trains all the layers with classifier. The structure of dbn should be initialized before calling this method.\\
+IV. void \textbf{classifier}(dataInBatch $\&$trainingData, dataInBatch $\&$trainingLabel, size$\_$t rbmEpoch, LossType l = MSE, ActivationType a = sigmoid$\_$t)\\
+This method trains a dbn with classifier. The architecture of dbn should be initialized before calling this method.\\
 \\
 V. void \textbf{fineTuning}(dataInBatch $\&$dataSet, dataInBatch $\&$labelSet, int epoch)\\
-Fine tuning step using Up-Down algorithm. This will call an upDown function. \\
+The fine tuning uses Up-Down algorithm.\\
 \\
 VI. classificationError \textbf{classify}(dataInBatch $\&$testingSet, dataInBatch $\&$testinglabel);\\
 Perform Classification.
 \subsection{Summary}
-It is easy to confuse the Deep Belief Network with the Deep Neural Network. Both of them stack pretrained RBMs in the training process. However, because these two models have distinct structures, their classification processes are different. In the Deep Neural Network, forward propagation gives the prediction distribution whereas in the Deep Belief Network the prediction distribution is computed by one more projection from the last hidden layer. 
+It is easy to confuse the Deep Belief Network with the Deep Neural Network. Both of them stack pretrained RBMs in the training process. However, because these two models have distinct structures, their classification processes are different. In the Deep Neural Network, forward propagation gives the prediction distribution whereas in the Deep Belief Network the prediction distribution is computed by one more projection from the last hidden layer. They also use different fine tuning methods.
 \clearpage
 \section{Denoising Autoencoder}
 \subsection{Construction of Autoencoder}
@@ -549,90 +551,82 @@ It is easy to confuse the Deep Belief Network with the Deep Neural Network. Both
 \includegraphics[height=3.2in]{AE.png}
 \caption{Autoencoder} \label{fig:side:a}
 \end{figure}
-Autoencoder is a type of neural network forming  a directed graph. An autoencoder is a stack of layers of which half are fixed by pretraining RBMs and the other half are fixed by its symmetric structure. Its symmetricity states that for an autoencoder with $N$ layers, the dimension of each layer is constrained by \begin{gather}
-n_i = n_{N - i}~~~~1\leq i\leq N-1\\
-n_{N} = n_{input}
+Autoencoder(AE) is a type of neural network forming  a directed graph. Its symmetricity states that for an autoencoder with $(N + 1)$ layers (including visible layer and output layer), the dimension of each layer is constrained by \begin{gather}
+n_i = n_{N - i}~~~~\text{for }0\leq i\leq N
 \end{gather}
-where $n_i$ is the dimension of the $i$th layer, and $n_{input}$ is the input dimension. The output and the input have the same dimension and it is expected that autoencoders could reconstruct the input. So the training of autoencoders is unsupervised learning because input is used as "labels" in fine tuning, and reconstruction errors could be used to access the model. Autoencoders could also be used as a part of supervised learning by adding a classification layer on top of it. Figure 6.1 shows an Autoencoder.\\
+where $n_i$ is the dimension of the $i$th layer, and $n_0$ is the input dimension. Since the output layer and the visible layer are in the same dimension, it is expected that autoencoders could reconstruct the input data. Thus the training of autoencoders is unsupervised learning because input data is used as labels in fine tuning, and reconstruction errors could be used to access the model. Autoencoders could also be used to construct classifiers by adding a classifier layer on top of it. Figure 6.1 shows an Autoencoder.\\
 \\
-Below is how to construct an autoencoder AE:\\
-I. Set the architecture of the model, specifically the size of each layer, \(n_1, n_2, ..., n_k\).\\
+Below is how to construct an autoencoder:\\
+I. Set the architecture of the model, specifically the size of each layer, \(n_0, n_1, n_2, ..., n_N\).\\
 \\
-II. Fix the parameters of AE:\\
+II. Pretraining:\\
 for $i = 1\text{ to }N/2$:\\
 \indent 1. Train an RBM with the following settings:\\
-\begin{gather}
+\begin{gather*}
 n_h^{(i)}=n_i\\
-n_v^{(i)}=\begin{cases}
-n_{input}~~~~i=1\\
-n_{i-1}~~~~~~i > 1
-\end{cases}\\
-d_i=\begin{cases}
-a_{input}~~~~i=1\\
-a_{i-1}~~~~~~i > 1
-\end{cases}
-\end{gather}
+n_v^{(i)}=n_{i-1}\\
+d_i=a_{i-1}
+\end{gather*}
 \indent where
-\begin{gather}
+\begin{gather*}
 n_h^{(i)} = \text{Dimension of hidden layer of RBM trained for layer }i,\\
 n_v^{(i)} = \text{Dimension of visible layer of RBM trained for layer }i,\\
 d_i = \text{Input of RBM trained for layer i},\\
-a_{i-1} = \text{Activations of the }(i-1)\text{th layer of autoencoder},\\
-a_{input} = \text{Input of the autoencoder AE}.
-\end{gather}
-\indent 2. Set \begin{gather}
+a_{i-1} = \text{Activations of the }(i-1)\text{th layer of autoencoder},
+\end{gather*}
+\indent 2. Initialize parameters of the current layer
+\begin{gather*}
 W_i = W_{RBM},\\
 b_i = b^h_{RBM},\\
 a_i = a_{RBM}.
-\end{gather}
-\indent That is to say, the weight of this RBM is the weight of the $i$th layer of AE, the hidden \indent bias of this RBM is the bias of the $i$th layer of AE, and $a_i$ is the activation of this RBM.\\
+\end{gather*}
+\indent The parameters of trained RBM are used to initialize the parameters of the layer.\\
 end for.\\
 \\
 for $i = N/2+1\text{ to }N$:\\
-\indent Set \begin{gather}
+\indent Initialize paramers \begin{gather*}
 W_i = W_{N - i}^{T},\\
-b_i = b_{N-i}.\\.
-\end{gather}
+b_i = b_{N-i}.
+\end{gather*}
 end for.\\
 \\
 III. Fine Tuning:\\
-Use the input of AE as the labels and the output of AE as the predictions in Backpropagation. The Loss function is Mean Square Error.
+Backpropagation with Mean Square Error. Error is computed based on the reconstruction and the training data.
 \subsection{Fine tuning of Autoencoder}
-Fine tuning of Autoencoder uses Backpropagation, which is:\\
+Fine tuning of Autoencoder uses backpropagation, which is:\\
 \\
-I. Perform a feedforward pass through all $N$ layers of the autoencoder, computing net-ins $\{z^{(1)},..., z^{(N)}\}$ and activations $\{a^{(1)},..., a^{(N)}\}$ of each layer. $a^{(i)}$ is a row vector representing the activation of layer $i$. \\
+I. Perform a forward propagation through all layers that computes layer inputs $\{z^{(1)},..., z^{(N)}\}$ and activations $\{a^{(1)},..., a^{(N)}\}$. $a^{(i)}$ is a row vector representing the activation of layer $i$. \\
+\\
 II. For the last layer, compute $\delta_i^{(N)}$ as
 \begin{equation}
 \delta_i^{(N)} = \frac{\partial L}{\partial z^{(N)}_i}
 \end{equation}
-where $L$ is the reconstruction error. This step acquire a row vector $\delta^{(N)}$. \\
+where $L$ is the reconstruction error. This step acquires a row vector $\delta^{(N)}$. \\
+\\
 III. For $l$ = $N-1, ..., 1$, compute 
 \begin{align}
 \delta^{(l)} = \left(\delta^{(l+1)} ~ (W^{(l)})^T \right) \bullet g'(z^{(l)})
 \end{align}
 where $g$ is the activation function and here $g'$ is element-wise performed.\\
-IV. Compute the gradients in each layer. For $l$ = $N, ..., 2$, compute 
+\\
+IV. Compute the gradients in each layer. For $l$ = $N, ..., 1$, compute 
 \begin{align}
 \nabla_{W^{(l)}} L &= (a^{(l-1)})^T~\delta^{(l)}, \\
 \nabla_{b^{(l)}} L &= \delta^{(l)}.
 \end{align}
-For $l=$, compute
-\begin{align}
-\nabla_{W^{(1)}} L &= (a^{(in)})^T~\delta^{(1)}, \\
-\nabla_{b^{(1)}} L &= \delta^{(1)}.
-\end{align}
-where $a^{(in)}$ is the input data of the autoencoder.\\
-V. Update the weights and biases of each layer using gradient descent.\\
+where $a^{(0)}$ is the input data of the autoencoder.\\
+\\
+V. Update the weights and biases of each layer with gradient descent.\\
 \\
 The reconstruction error of Autoencodr is \begin{equation}
-L = \frac{1}{2}\sum_{i=1}^{n_N}(a^{(N)}_i - a^{(in)}_i)^2
+L = \frac{1}{2}\sum_{i=1}^{n_N}(a^{(N)}_i - a^{(0)}_i)^2
 \end{equation}
-where \begin{gather}
-n_{N} = \text{Dimension of the Autoencoder output},\\
-a^{(N)}_{i} = \text{Value of the }i\text{th element of Autoencoder output},\\
-a^{(in)}_{i} = \text{Value of the }i\text{th element of Autoencoder input}.
-\end{gather}
-Backpropagation of Autoencoder starts from computing $\delta_i^{(N)}$, and then find the $\delta$ of each layer below based on the derivative of activation function and $\delta$ of the upper layer. Here is how to compute these two values:\\
+where \begin{gather*}
+n_{N} = \text{Dimension of the output/reconstruction},\\
+a^{(N)}_{i} = \text{Activation of the }i\text{th unit in the output layer},\\
+a^{(0)}_{i} = \text{Activation of the }i\text{th unit in the visible layer}.
+\end{gather*}
+Backpropagation involves computing $\{\delta^{(i)}\}$, which is based on the derivatives of activation function and error function. Here is how to compute these two values:\\
 \\
 For sigmoid activation:
 \begin{equation}
@@ -642,9 +636,8 @@ That is to say\begin{equation}
 g'(z_i) = \frac{1}{1+e^{-z_i}}(1-\frac{1}{1+e^{-z_i}})=a_i(1-a_i).
 \end{equation}
 For $\delta_i^{(N)}$, use chain rule\begin{equation}
-\delta_i^{(N)} = \frac{\partial L}{\partial z^{(N)}_i}=\sum_{p=1}^{n_N} \frac{\partial L}{\partial a^{(N)}_p} \frac{\partial a^{(N)}_p}{\partial z^{(N)}_i} = \frac{\partial L}{\partial a^{(N)}_i} \frac{\partial a^{(N)}_i}{\partial z^{(N)}_i} = (a^{(N)}_i-a^{(in)}_i)\times a^{(N)}_i(1-a^{(N)}_i).
+\delta_i^{(N)} = \frac{\partial L}{\partial z^{(N)}_i}=\sum_{p=1}^{n_N} \frac{\partial L}{\partial a^{(N)}_p} \frac{\partial a^{(N)}_p}{\partial z^{(N)}_i} = \frac{\partial L}{\partial a^{(N)}_i} \frac{\partial a^{(N)}_i}{\partial z^{(N)}_i} = (a^{(N)}_i-a^{(0)}_i)\times a^{(N)}_i(1-a^{(N)}_i).
 \end{equation}
-So with sigmoid activation and square loss, fine tuning of autoencoder could be done based on only activations and weights of each layer. It could save memory by using only activations instead of both activations and net-ins of each layer even though the original formula of backpropagation uses $g'(z)$.
 \subsection{Denoising Autoencoder}
 The Denoising Autoencoder reconstructs the input from its corrupted version. So it could predict missing values and it is quite straightforward to observe its performance when the input is images. By putting a denoise mask on the input, the Autoencoders could be transformed to the Denoising Autoencoders. Here is how to make this transformation:\\
 \\
