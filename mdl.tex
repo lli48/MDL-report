@@ -377,24 +377,24 @@ d_i=a_{i-1}\\
 n_h^{(i)} = \text{Dimension of hidden layer of RBM trained for layer }i,\\
 n_v^{(i)} = \text{Dimension of visible layer of RBM trained for layer }i,\\
 d_i = \text{Input of RBM trained for layer i},\\
-a_{i-1} = \text{Activations of the }(i-1)\text{th layer of the model}.
+a_{i-1} = \text{Activations of the }(i-1)\text{th DNN layer}.
 \end{gather}
 \indent 2. Set \begin{gather}
 W_i = W_{RBM},\\
 b_i = b^h_{RBM},\\
 a_i = a_{RBM}.
 \end{gather}
-\indent That is to say, the weight of this RBM is the weight of the $i$th hidden layer of the model, the hidden bias of this RBM is the bias of the $i$th layer of the model, and $a_i$ is the activation of this RBM.\\
+\indent RBM is used to initialize weights and biases of each DNN layer.\\
 end for.\\
 \\
 III. Fine Tuning:\\
-Use backpropagation to refine weights and biases of each layer. One epoch in backpropagation uses the whole training set for update once. Sometimes a dozen of epochs would suffice.\\
+Use backpropagation to refine weights and biases of each layer. In backpropagation, one epoch goes through training data once. A dozen of epochs may suffice.\\
 \\
-Classification with Deep Neural Network is similar to RBM. The emission of the last layer, namely its softmax activation, is the predicted class distribution. In the last layer, the index of the unit with the maximum probability is the label. 
+Classification with Deep Neural Network is similar to RBM. The last layer, which uses softmax activation, gives the prediction distribution.
 \subsection{Fine Tuning of Deep Neural Network}
 As mentioned in the above section, fine tuning uses backpropagation, which is a common learning algorithm used in neural networks. Unlike one-step backpropagation used in training classifier of RBM, this one is a thorough one going through each layer. Backprogation algorithm is:\\
 \\
-I. Perform a pass through all layers of the network, computing total input of each unit $\{z^{(1)},..., z^{(N)}\}$ and activations $\{a^{(1)},..., a^{(N)}\}$ of each layer. $a^{(i)}$ is the row vector of the activation of layer $i$. \\
+I. Perform a pass through all layers of the network, computing total input of each unit $\{z^{(1)},..., z^{(N)}\}$ and activations $\{a^{(1)},..., a^{(N)}\}$ of each layer. $a^{(i)}$ is the row vector that presents the activation of layer $i$. \\
 \\
 II. For the last layer, compute $\delta_i^{(N)}$ as
 \begin{equation}
@@ -413,13 +413,13 @@ IV. Compute the gradients in each layer. For $l$ = $N, ..., 1$, compute
 \nabla_{W^{(l)}} L &= (a^{(l-1)})^T~\delta^{(l)}, \\
 \nabla_{b^{(l)}} L &= \delta^{(l)}.
 \end{align}
-where $a^{(0)}$ is the input of the model.\\
+where $a^{(0)}$ is the training data.\\
 \\
 V. Update the weights and biases of each layer using gradient descent.\\
 \\
-In fine tuning, the same training should be used multiple times to refine the model parameters by repeating the above steps multiple times, or the affect may not be obvious.
+In fine tuning, the training data should be used repeatedly to refine the model parameters.
 \subsection{Implementation of Deep Neural Network}
-The implementation of Deep Neural Network is in the header file dnn.hpp. It uses a vector of objects of class RBMlayer to store structure information. Here is a selected list of methods of class dnn:\\
+The implementation of Deep Neural Network is in the header file dnn.hpp. It uses class RBMlayer to store architecture information. Here is a selected list of methods of class dnn:\\
 \\
 I. void \textbf{addLayer}(RBMlayer $\&$l)\\
 Add a layer to the current model. This object of class RBMlayer should store information of layer size, weight, bias, etc. It could also be modified after added to  the model.\\
@@ -434,12 +434,12 @@ IV. void \textbf{classifier}(dataInBatch $\&$trainingData, dataInBatch $\&$train
 Build a Deep Neural Network with a classifier layer. This function contains pretraining option preTrainOpt. If preTrainOpt=1, pretrain each layer by training RBMs, else randomly initialize layer parameters without pretraining.\\
 \\
 V. void \textbf{fineTuning}(dataInBatch $\&$label, dataInBatch $\&$inputSet, LossType l)\\
-Fine tuning step using backpropagation.\\
+Fine tuning step that uses backpropagation.\\
 \\
 VI. classificationError \textbf{classify}(dataInBatch $\&$testingSet, dataInBatch $\&$testinglabel);\\
-Perform Classification. This is a method of class dnn because object of class dnn could store information of multiple layers. Object of class rbm could store information of only one layer so its classification uses a function instead of class method.  
+Perform Classification. The result is stored in the format classficationError.
 \subsection{Summary}
-Construction of the Deep Neural Network is stacking multiple RBMs in the pretraining process and then performing fine tuning. Because the Deep Neural Network is a directed graph and each layer receives data input only from the adjacent layer below it, there is no extra inference step in training this model.
+Construction of the Deep Neural Network is stacking multiple RBMs in the pretraining process and then performing fine tuning. Because the Deep Neural Network is a directed graph and each layer receives input from the previous adjacent layer, there is no extra inference in training this model.
 \clearpage
 \section{Deep Belief Network}
 \subsection{Logic of Deep Belief Network}
