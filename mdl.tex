@@ -395,7 +395,7 @@ Classification with Deep Neural Network is similar to RBM. The last layer, which
 \subsection{Fine Tuning of Deep Neural Network}
 As mentioned in the above section, fine tuning uses backpropagation, which is a common learning algorithm used in neural networks. Unlike one-step backpropagation used in training classifier of RBM, this one is a thorough one going through each layer. Backprogation algorithm is:\\
 \\
-I. Perform a pass through all layers of the network, computing total input of each layer $\{z^{(1)},..., z^{(N)}\}$ and activations $\{a^{(1)},..., a^{(N)}\}$ of each layer. $a^{(i)}$ is the row vector that presents the activation of layer $i$. \\
+I. Perform a pass through all layers of the network, computing total input of each layer $\{z^{(1)},..., z^{(N)}\}$ and activations $\{a^{(1)},..., a^{(N)}\}$ of each layer. $a^{(i)}$ is the row vector that represents the activation of layer $i$. \\
 \\
 II. For the last layer, compute $\delta_i^{(N)}$ as
 \begin{equation}
@@ -474,7 +474,7 @@ where $P(h_{N-1},h_N, y)$ could be regarded as the distribution over a RBM which
 \\
 In pretraining of the Deep Belief Network, pretrained RBMs are stacked like in pretraining the Deep Neural Network. However, since this is not a feedforward neural network. A different fine tuning method called Up-Down algorithm is used.
 \subsection{Training of Deep Belief Network}
-Training a Deep Belief Network is to construct model that maximizes the likelihood of the training data. With the concavity of the logarithm function, the lower bound of the log likelihood of the training data $x$ could be found:\begin{equation}\label{eq:10}
+In training, the Deep Belief Network should maximize the likelihood of the training data. With the concavity of the logarithm function, the lower bound of the log likelihood of the training data $x$ could be found:\begin{equation}\label{eq:10}
 \log P(x)=\log\left(\sum_h Q(h|x)\frac{P(x,h)}{Q(h|x)}\right)\geq \sum_h Q(h|x)\log\frac{P(x,h)}{Q(h|x)}
 \end{equation}
 and we have
