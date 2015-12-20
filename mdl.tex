@@ -768,7 +768,8 @@ Initialize $M$ samples $\{\tilde{v}_{0,1},\tilde{h}_{0,1}\}$,...,$\{\tilde{v}_{0
 \indent 3. Parameter Update:\\
 \indent $W^1_{t+1} = W^1_t + \alpha_t\Big(\frac{1}{D}\sum_{n=1}^D \mathbf{v}_n(\mathbold{\mu}_n^1)^T- \frac{1}{M}\sum_{m=1}^M \tilde{\mathbf{v}}_{t+1,m}(\tilde{\mathbf{h}}_{t+1,m}^1)^T\Big)$\\
 \indent $W^2_{t+1} = W^2_t + \alpha_t\Big(\frac{1}{D}\sum_{n=1}^D \mathbold{\mu}_n^1(\mathbold{\mu}_n^2)^T- \frac{1}{M}\sum_{m=1}^M \tilde{\mathbf{h}}_{t+1,m}^1(\tilde{\mathbf{h}}_{t+1,m}^2)^T\Big)$\\
-\indent $W^3_{t+1} = W^3_t + \alpha_t\Big(\frac{1}{D}\sum_{n=1}^D \mathbold{\mu}_n^2(\mathbold{\mu}_n^3)^T- \frac{1}{M}\sum_{m=1}^M \tilde{\mathbf{h}}_{t+1,m}^2(\tilde{\mathbf{h}}_{t+1,m}^3)^T\Big)$\\
+\indent$\cdots$ \\
+\indent $W^{n_N}_{t+1} = W^{n_N}_t + \alpha_t\Big(\frac{1}{D}\sum_{n=1}^D \mathbold{\mu}_n^{n_{N-1}}(\mathbold{\mu}_n^{n_N})^T- \frac{1}{M}\sum_{m=1}^M \tilde{\mathbf{h}}_{t+1,m}^{n_{N-1}}(\tilde{\mathbf{h}}_{t+1,m}^N)^T\Big)$\\
 \indent Decrease $\alpha_t$.\\
 \noindent \textbf{end for}\\
 \\
