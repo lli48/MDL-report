@@ -199,18 +199,15 @@ P(h_j=1|v) = P(u < a_j).
 \end{equation}
 Thus we could sample by testing if $u < a_j$, since it has the same probability from which we want to sample. Each unit has two states. If $u < a_j$ fails, the state is 0.\\
 \\
-In training of RBM, first use input training data as the visible layer to sample the hidden layer from \begin{equation}
-P(h_j=1|v) = \sigma \left(b_j + \sum_{i=1}^m W_{i,j} v_i \right)\,
+In training, first use training data to compute hidden layer posterior using \begin{equation}
+P(h_j=1|v) = \sigma \left(b_j + \sum_{i=1}^m W_{i,j} v_i \right).
 \end{equation}
-then run a Gibbs sampling to sample the visible layer based on the latest state of the hidden layer, and the hidden layer based on the visible layer just sampled. It has the following sequence:\\
-training data $>>$ hidden layer $>>$ visible layer $>>$  hidden layer\\
+The hidden layer states together with the data form the first sample. Then use Gibbs sampling to compute the second sample.\\
 \\
-The Contrastive Divergence states that performs one Gibbs sampling is enough for RBM training. The training data and the activation of the first sampled hidden layer are respectively $v_{data}$ and $h_{data}$. The sampled visible states and the activation of the second sampled hidden layer are respectively $v_{recon}$ and $h_{recon}$. In this way the gradient of weight could be computed.\\
-\\
-The gradient of visible bias is \begin{equation}
-\nabla b^v_{i} = \langle v_i\rangle_{recon} - \langle v_i\rangle_{data}
+The gradient of the visible bias is \begin{equation}
+\nabla b^v_{i} = \langle v_i\rangle_{recon} - \langle v_i\rangle_{data},
 \end{equation}
-and the gradient of hidden bias is \begin{equation}
+and the gradient of the hidden bias is \begin{equation}
 \nabla b^h_{j} = \langle h_j\rangle_{recon} - \langle h_j\rangle_{data}
 \end{equation}
 \subsection{Tricks in Restricted Boltzmann Machine Training}
