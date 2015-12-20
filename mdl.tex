@@ -247,9 +247,9 @@ where learning rate is reduced by half every five epochs. The coefficients in th
 With momentum $\rho$, the update step is \begin{equation}
 \Delta_{t+1} W = \rho * \Delta_t W - r\nabla W.
 \end{equation}
-The update is a portion of previous update minus the gradient. The intuition behind it is that if the gradient has the same direction as previous update, the update will become larger. If the the gradient is in the different direction from previous update, the current update will not have the same direction as the gradient and its variance is reduced. In this way, time to converge is reduced.\\
+The update value is a portion of previous update value minus the gradient. The intuition behind it is that if the gradient has the same direction as previous update, the update will become larger. If the the gradient is in the different direction from the previous update, the current update will not have the same direction as the gradient and its variance is reduced. In this way, time to converge is reduced.\\
 \\
-Momentum is often applied with Annealing so that steps of updates will not be too large. A feasible scheme is to set \begin{eqnarray}
+Momentum is often applied with annealing so that steps of updates will not be too large. A feasible scheme is \begin{eqnarray}
 \rho=\begin{cases}
 0.5,~~~~t <  5\\
 0.9,~~~~t \geq 5
@@ -266,25 +266,25 @@ p_2 = k \times \sum_{i,j} W_{ij}^2.
 \end{equation}
 $L_2$ penalty causes weights to become more even and smaller. The coefficient $k$ is customized, sometimes 0.5 would work. Penalty must be, as well as the gradient, multiplied by the learning rate so that annealing will not change the model trained. 
 \subsection{Classifier of Restricted Boltzmann Machine}
-To build a classifier on RBM is to train a classifier layer with softmax activation function on top of the hidden layer. Softmax activation function takes a vector $a = \{a_1, a_2,..., a_q\}$ as input, and outputs a vector $c = \{c_1, c_2,..., c_q\}$ with the same dimension, specifically\begin{equation}
+A classifier based on RBM could be constructed by training a classifier layer with softmax activation function on top of the hidden layer. Softmax activation function takes a vector $a = \{a_1, a_2,..., a_q\}$ as input, and outputs a vector $c = \{c_1, c_2,..., c_q\}$ with the same dimension, specifically\begin{equation}
 c_i = \frac{e^{a_i}}{\sum_{k=1}^q e^{a_k}}.
 \end{equation}
 \\
-One of $K$ scheme is here used to present the class distribution. If there are $K$ classes in the training data, then the label of a sample in class $i$ is expressed as a vector of length $K$ with only the $i$th element as 1, the others as 0. For instance, if the training data has 5 classes, a sample in the forth class has the label\begin{equation}
+Here one-of-$K$ scheme is used to present the class distribution. If there are $K$ classes in the training data, then the label of a sample in class $i$ is expressed as a vector of length $K$ with only the $i$th element as 1, the others as 0. For instance, if the training data has 5 classes, a sample in the forth class has the label\begin{equation}
 \{0,0,0,1,0\}.
 \end{equation}
 \\
-For a training set with $K$ classes, there should be $K$ neurons in the classifier layer and the sofxmax activation emits a vector of length $K$. The maximum element in this emitted vector is located and its index is the label of this data sample. It could be found from the definition of the softmax activation that the elements of its emitted vector sums to 1 and it is actually the class distribution of prediction. Namely\begin{equation}
+For a training set with $K$ classes, there should be $K$ neurons in the classifier layer. For each data sample, the sofxmax activation emits a vector of length $K$. The index of the maximum element in this emission is the label. The elements of the  softmax activation sum to 1 and the activation is the prediction distribution:\begin{equation}
 c_i = P\{\text{The sample is in class i}\}.
 \end{equation}
 \\
-This seems straightforward, however softmax activation takes input vector of length K whereas the trained RBM always has hundreds of units in its hidden layer. So the weight from the hidden layer to the classifier layer must be learned. If there are $n_h$ hidden units in hidden layer and $K$ classes, this weight should be a matrix of dimension $n_h\times K$.\\
+Softmax activation takes input of dimension $K$ whereas the hidden layer may have dimension of more than 500. So the projection from the hidden layer to the classifier should be learned. If hidden layer has dimension $n_h$ and there are $K$ classes, the weight of this projection should be a matrix of dimension $n_h\times K$.\\
 \\
-The method of learning this weight is a one-step Backpropagation. Backpropagation is an algorithm in neural networks to compute the derivatives of classification error with respect to weights. Among several loss functions, cross entropy loss is a better choice for classification using softmax, which is justified by papers comparing various combinations of activation function and loss function. If the label is presented in One of $K$ scheme as a vector $t$, and class distribution of prediction is $c$,  cross entropy loss is \begin{equation}
+Backpropagation is used to compute this weight. Among several loss functions, cross entropy loss is a good choice for classification using softmax, which is justified by papers comparing various combinations of activation function and loss function. If the label is presented in one-of-$K$ scheme as a vector $t$, and prediction distribution is $c$,  cross entropy loss is \begin{equation}
 L = -\sum_{i = 0}^K t_i log(c_i).
 \end{equation}
 \\
-Use chain rule to deduct the derivative as\begin{equation}
+Use chain rule:\begin{equation}
 \frac{\partial L}{\partial W_{ij}} = \sum_{p=1}^K \frac{\partial L}{\partial c_p} \frac{\partial c_p}{\partial W_{ij}}
 \end{equation}
 and \begin{equation}
@@ -315,7 +315,7 @@ where $a^h_i$ is the activation of hidden layer. Based on above equations, for c
 Expressed in row vectors it is \begin{equation}
 \nabla W = (a^h)^T\times (c - t)
 \end{equation}
-where $(a^h)^T$ is the transpose of row vector $a^h$. This is the gradient used in batch learning to update the weight from hidden layer to classifier layer. Use the same update method in RBM training to build this classifier. 
+where $(a^h)^T$ is the transpose of row vector $a^h$. This gradient is used in batch learning.
 \subsection{Implementation of RBM}
 My implementation of RBM is in the header file rbm.hpp. The RBM class stores information of one hidden layer and one activation layer. It has methods to train a learning or classifier layer. Here is a selected list of methods of class rbm:\\
 \\
@@ -334,22 +334,22 @@ IV. void \textbf{singleTrainLinear}(dataInBatch $\&$trainingSet, int numEpoch, A
 V. void \textbf{singleClassifie}r(dataInBatch $\&$modelOut, dataInBatch $\&$labelSet, int numEpoch, GDType gd = SGD);\\
 -Build a classifier layer for RBM.\\
 \\
-The model could be tested by running runRBM.cpp. It requires only OpenCV. For MNIST dataset, in which each data sample is a 28$\times$28 image and data dimension is 784. First train an training layer consisting of one RBM with one hidden layer and one activation layer:\\
+The model could be tested by running runRBM.cpp. First train a RBM with one hidden layer:\\
 \\
 RBM rbm(784, 500, 0);\\
 rbm.dropout(0.2);\\
 rbm.singleTrainBinary(trainingData, 6);\\
 dataInBatch modelOut = rbm.g$\_$activation(trainingData);\\
 \\
-The hidden layer has 500 units, and the index of this RBM is 0, which is used for multi-layer model. Then set the dropout rate as 0.2 and train it using training data with 6 epochs. After training, stack another RBM layer with softmax activation function:\\
+The hidden layer has 500 units, and the index of this RBM is 0, which is used for multi-layer model. Then set the dropout rate as 0.2 and train it with 6 epochs. After training, stack another RBM layer with softmax activation function:\\
 \\
 RBM classifier(500, 10, 0);\\
 classifier.singleClassifier(modelOut, trainingLabel, 6);\\
 classificationError e = classifyRBM(rbm, classifier, testingData, testingLabel, sigmoid$\_$t);\\
 \\
-MNIST dataset has 10 classes, so the classifier trains a layer of 10 units using the emission from the training layer just acquired. Training label is used to compute the gradient in one-step backpropagation. The epoch is still 6. The function classifyRBM is defined in rbm.hpp. Error rate under this setting should be around 8$\%$. 
+MNIST dataset has 10 classes, so the classifier is of dimension 10.
 \subsection{Summary}
-RBM is the foundation for several multi-layer models. It is crucial that this component is correctly implemented and fully understood. Some implementations train the classifier the same time as the training layer is built instead of training them in two steps. The advantage in separating these two is easiness in checking problems in the implementation.
+RBM is the foundation for several multi-layer models. It is crucial that this component is correctly implemented and fully understood. The classifier may be trained with the hidden layer at the same time. Separating these two facilitates checking problems in the implementation.
 \clearpage
 \section{Deep Neural Network}
 \subsection{Construction of Deep Neural Network}
