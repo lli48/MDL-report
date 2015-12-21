@@ -84,4 +84,90 @@ Hugo Larochelle and Yoshua Bengio.
 Alex Krizhevsky and Geoffrey Hinton.
 \newblock Learning multiple layers of features from tiny images, 2009.
 
+\bibitem{wang2015stochastic}
+Weiran Wang, Raman Arora, Karen Livescu, and Nathan Srebro.
+\newblock Stochastic optimization for deep cca via nonlinear orthogonal
+  iterations.
+\newblock {\em arXiv preprint arXiv:1510.02054}, 2015.
+
+\bibitem{wangdeep}
+Weiran Wang, Raman Arora, Karen Livescu, and Jeff Bilmes.
+\newblock On deep multi-view representation learning.
+
+\bibitem{wang2015unsupervised}
+Weiran Wang, Raman Arora, Karen Livescu, and Jeff~A Bilmes.
+\newblock Unsupervised learning of acoustic features via deep canonical
+  correlation analysis.
+\newblock In {\em Proceedings of ICASSP}, 2015.
+
+\bibitem{wang2014reconstruction}
+Weiran Wang, Raman Arora, and Karen Livescu.
+\newblock Reconstruction of articulatory measurements with smoothed low-rank
+  matrix completion.
+\newblock In {\em Spoken Language Technology Workshop (SLT), 2014 IEEE}, pages
+  54--59. IEEE, 2014.
+
+\bibitem{arora2014multi}
+Rajkumar Arora and Karen Livescu.
+\newblock Multi-view learning with supervision for transformed bottleneck
+  features.
+\newblock In {\em Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE
+  International Conference on}, pages 2499--2503. IEEE, 2014.
+
+\bibitem{bharadwaj2012multiview}
+Sujeeth Bharadwaj, Raman Arora, Karen Livescu, and Mark Hasegawa-Johnson.
+\newblock Multiview acoustic feature learning using articulatory measurements.
+\newblock In {\em Intl. Workshop on Stat. Machine Learning for Speech
+  Recognition}, 2012.
+
+\bibitem{becker1992self}
+Suzanna Becker and Geoffrey~E Hinton.
+\newblock Self-organizing neural network that discovers surfaces in random-dot
+  stereograms.
+\newblock {\em Nature}, 355(6356):161--163, 1992.
+
+\bibitem{hotelling1936relations}
+Harold Hotelling.
+\newblock Relations between two sets of variates.
+\newblock {\em Biometrika}, pages 321--377, 1936.
+
+\bibitem{hsieh2000nonlinear}
+William~W Hsieh.
+\newblock Nonlinear canonical correlation analysis by neural networks.
+\newblock {\em Neural Networks}, 13(10):1095--1105, 2000.
+
+\bibitem{lai1999neural}
+Pei~Ling Lai and Colin Fyfe.
+\newblock A neural implementation of canonical correlation analysis.
+\newblock {\em Neural Networks}, 12(10):1391--1397, 1999.
+
+\bibitem{lai2000kernel}
+Pei~Ling Lai and Colin Fyfe.
+\newblock Kernel and nonlinear canonical correlation analysis.
+\newblock {\em International Journal of Neural Systems}, 10(05):365--377, 2000.
+
+\bibitem{westbury1990x}
+John Westbury, Paul Milenkovic, Gary Weismer, and Raymond Kent.
+\newblock X-ray microbeam speech production database.
+\newblock {\em The Journal of the Acoustical Society of America},
+  88(S1):S56--S56, 1990.
+
+\bibitem{srivastava2012multimodal}
+Nitish Srivastava and Ruslan~R Salakhutdinov.
+\newblock Multimodal learning with deep boltzmann machines.
+\newblock In {\em Advances in neural information processing systems}, pages
+  2222--2230, 2012.
+
+\bibitem{matthews2002extraction}
+Iain Matthews, Timothy~F Cootes, J~Andrew Bangham, Stephen Cox, and Richard
+  Harvey.
+\newblock Extraction of visual features for lipreading.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 24(2):198--213, 2002.
+
+\bibitem{lecun1998gradient}
+Yann LeCun, L{\'e}on Bottou, Yoshua Bengio, and Patrick Haffner.
+\newblock Gradient-based learning applied to document recognition.
+\newblock {\em Proceedings of the IEEE}, 86(11):2278--2324, 1998.
+
 \end{thebibliography}

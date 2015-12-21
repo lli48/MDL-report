@@ -22,7 +22,7 @@
 %\affil[*]{Department of Computer Science, Johns Hopkins University}
 \begin{document}
 \title{\vspace{40mm}Multimodal Deep Learning Library}
-\author[]{Jian Jin\\{\small Supervised by: Raman Arora}}
+\author[]{Jian Jin}
 \affil{Department of Computer Science, Johns Hopkins University}
 \maketitle
 \thispagestyle{empty} 
@@ -850,6 +850,7 @@ In Deep Correlation Analysis (DCCA), A layer of KCCA is added on top of two sepa
 \includegraphics[height=2.8in]{DCCA.png}
 \caption{Deep Canonical Correlation Analysis} \label{fig:side:a}
 \end{figure}
+Deep Canonically Correlated Autoencoders (DCCAE) [17] is an extension  of DCCA. Compare to DCCA, it could find solutions with higher correlation sum. 
 \subsection{Modal Prediction and Transformation}
 \begin{figure*}[!t]
 \centering
@@ -875,11 +876,12 @@ Prediction of data from one modal given data from the other modal could be done 
 \caption{Modal Prediction}
 \label{fig5}
 \end{figure*}
+
 \clearpage
 \section{Library Structure}
 \subsection{Data Reading}
 \subsubsection{MNIST}
-MNIST is a selected set of samples from NIST data set. It has one training data set, one training label set, one testing data set, and one testing label set. The training set has 60,000 samples and the testing set has 10,000 samples. Each sample data is a 28$\times$28 grey image which is a handwritten integer between 0 and 9. It has 10 classes, so the label is between 0 (inclusive) and 9 (inclusive).\\
+MNIST [30] is a selected set of samples from NIST data set. It has one training data set, one training label set, one testing data set, and one testing label set. The training set has 60,000 samples and the testing set has 10,000 samples. Each sample data is a 28$\times$28 grey image which is a handwritten integer between 0 and 9. It has 10 classes, so the label is between 0 (inclusive) and 9 (inclusive).\\
 \\
 The data is stored in big-endian format. The content of data should be read as unsigned characters. Header file readMNIST.hpp provides functions to read this data set.\\
 \\
@@ -889,7 +891,7 @@ Read data of MNIST. Each row is a sample.\\
 II. cv::Mat \textbf{imread$\_$mnist$\_$label}(const char* path)\\
 Read labels of MNIST. Each row is a number indicating class of that sample.
 \subsubsection{CIFAR}
-The CIFAR-10 data set consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. There are 5 batches of training images and 1 batch of test images, each consists of 10000 images.\\
+The CIFAR-10 data set [15] consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. There are 5 batches of training images and 1 batch of test images, each consists of 10000 images.\\
 \\
 In CIFAR-10 data set, each sample consists of a number indicating its class and the values of the image pixels. Put five training data batches and one testing data batch of CIFAR-10 in the same folder named "data". The following function in the header file readCIFAR.hpp reads them to four OpenCV matrices:\\
 \\
@@ -898,7 +900,7 @@ void \textbf{imread$\_$cifar}(Mat $\&$trainingData, Mat $\&$trainingLabel, Mat $
 Each row of the read OpenCV matrices consists of the label and the data of a sample.
 
 \subsubsection{XRMB}
-As stated in its explanation, Wisconsin X-ray Microbeam Database (XRMB) data used in "Deep Canonical Correlation Analysis" is processed by Galen Andrew, Raman Arora, etc.The dimension of the MFCC data is 273 and the dimension of the XRMB data is 112. There are label files of fold 0 that provides the phone labels. The data is stored in double-precision format.\\
+As stated in its explanation, Wisconsin X-ray Microbeam Database (XRMB) data [27] used in "Deep Canonical Correlation Analysis" [7] is processed by Galen Andrew, Raman Arora, etc.The dimension of the MFCC data is 273 and the dimension of the XRMB data is 112. There are label files of fold 0 that provides the phone labels. The data is stored in double-precision format.\\
 \\
 The following function in the header file readXRMB.hpp reads them:\\
 \\
@@ -908,7 +910,7 @@ indexLabel \textbf{imread$\_$XRMB$\_$label}(const char* path)\\
 \\
 When reading MFCC files, inputDim = 273. When reading XRMB files, inputDim = 112. The label is between 0 (inclusive) and 39 (inclusive). The data is stored sample by sample. 
 \subsubsection{AvLetters}
-AvLetters is the data set recording audio data and video data of different people uttering letters. The dimension of the audio data is 26 and the dimension of the video data is 60$\times$80. The data is stored in single-precision big-endian format. Each file is the data of a person uttering a certain letter. For instance, the file A1$\_$Anya.mfcc contains the audio data of the person named Anya uttering letter "A". \\
+AvLetters [29] is the data set recording audio data and video data of different people uttering letters. The dimension of the audio data is 26 and the dimension of the video data is 60$\times$80. The data is stored in single-precision big-endian format. Each file is the data of a person uttering a certain letter. For instance, the file A1$\_$Anya.mfcc contains the audio data of the person named Anya uttering letter "A". \\
 \\
 The following function in the header file readAvLetters.hpp reads audio data:\\
 \\
@@ -1017,5 +1019,7 @@ Modal prediction implementation is in the modal$\_$prediction.cpp. It trains the
 \nocite{*}
 \bibliographystyle{unsrt}
 \bibliography{mdl}
+
+
 
 \end{document}

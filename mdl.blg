@@ -7,49 +7,63 @@ Repeated entry---line 113 of file mdl.bib
  : @inproceedings{salakhutdinov2007restricted
  :                                           ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 149 of file mdl.bib
+Repeated entry---line 193 of file mdl.bib
+ : @inproceedings{bharadwaj2012multiview
+ :                                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 210 of file mdl.bib
  : @article{hardoon2004canonical
  :                              ,
 I'm skipping whatever remains of this entry
-You've used 15 entries,
+Repeated entry---line 263 of file mdl.bib
+ : @inproceedings{ngiam2011multimodal
+ :                                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 312 of file mdl.bib
+ : @misc{krizhevsky2009learning
+ :                             ,
+I'm skipping whatever remains of this entry
+Warning--empty journal in wangdeep
+Warning--empty year in wangdeep
+You've used 30 entries,
             1791 wiz_defined-function locations,
-            539 strings with 6041 characters,
-and the built_in function-call counts, 4329 in all, are:
-= -- 417
-> -- 148
-< -- 6
-+ -- 55
-- -- 40
-* -- 274
-:= -- 612
-add.period$ -- 47
-call.type$ -- 15
-change.case$ -- 15
+            632 strings with 8668 characters,
+and the built_in function-call counts, 8353 in all, are:
+= -- 793
+> -- 308
+< -- 10
++ -- 114
+- -- 84
+* -- 545
+:= -- 1205
+add.period$ -- 93
+call.type$ -- 30
+change.case$ -- 30
 chr.to.int$ -- 0
-cite$ -- 15
-duplicate$ -- 201
-empty$ -- 438
-format.name$ -- 40
-if$ -- 1011
+cite$ -- 32
+duplicate$ -- 387
+empty$ -- 836
+format.name$ -- 84
+if$ -- 1929
 int.to.chr$ -- 0
-int.to.str$ -- 15
-missing$ -- 13
-newline$ -- 78
-num.names$ -- 15
-pop$ -- 57
+int.to.str$ -- 30
+missing$ -- 28
+newline$ -- 152
+num.names$ -- 30
+pop$ -- 108
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 127
+skip$ -- 227
 stack$ -- 0
-substring$ -- 377
-swap$ -- 77
-text.length$ -- 6
+substring$ -- 706
+swap$ -- 134
+text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 46
-width$ -- 17
-write$ -- 166
-(There were 2 error messages)
+warning$ -- 2
+while$ -- 87
+width$ -- 32
+write$ -- 326
+(There were 5 error messages)
